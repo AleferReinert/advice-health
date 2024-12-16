@@ -16,13 +16,17 @@ Webapp para consultório médico.
    ```
    npm install
    ```
-4. Defina as variaveis de ambiente como em .env.example.
+4. Prepare o husky:
+   ```
+   npm run prepare
+   ```
+5. Defina as variaveis de ambiente como em .env.example.
 
-5. Inicie o servidor de desenvolvimento:
+6. Inicie o servidor de desenvolvimento:
    ```
    npm run dev
    ```
-6. Rode o Storybook:
+7. Inicie o Storybook:
    ```
    npm run storybook
    ```

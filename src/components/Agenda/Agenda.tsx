@@ -20,8 +20,8 @@ interface AgendaProps {
 }
 
 export function Agenda({ items, loading }: AgendaProps) {
-	function getDoctorById(id: string): DoctorProps | undefined {
-		return mockDoctors.find(doctor => doctor.id === id)
+	function getDoctorById(crm: string): DoctorProps | undefined {
+		return mockDoctors.find(doctor => doctor.crm === crm)
 	}
 	function getPatientById(id: string): PatientProps | undefined {
 		return mockPatients.find(patient => patient.id === id)
