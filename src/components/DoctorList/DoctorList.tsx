@@ -4,6 +4,7 @@ import { AiFillCaretRight } from 'react-icons/ai'
 import { Loading } from '../Loading/Loading'
 
 export interface DoctorProps {
+	id: string
 	name: string
 	crm: string
 	specialty: string
@@ -25,18 +26,18 @@ export const DoctorList = ({ doctorList, onSelectDoctor, loading, selectedDoctor
 	) : (
 		<div>
 			{doctorList.map(doctor => {
-				const active = selectedDoctor === doctor.crm
+				const active = selectedDoctor === doctor.id
 
 				return (
 					<div
-						key={doctor.crm}
-						onClick={() => onSelectDoctor(doctor.crm)}
-						className='cursor-pointer flex items-center justify-between py-2 -mx-4 px-4 hover:bg-gray-100 transition'
+						key={doctor.id}
+						onClick={() => onSelectDoctor(doctor.id)}
+						className='cursor-pointer flex gap-8 items-center justify-between py-2 -mx-4 px-4 hover:bg-gray-100 transition'
 					>
-						<div className='flex gap-4'>
+						<div className='flex gap-4 w-max'>
 							<Image alt={doctor.name} src={doctor.photo} width={48} height={48} className='rounded-full size-12' />
 							<div>
-								<h3 className={`${active && 'text-primary'} font-medium transition`}>{doctor.name}</h3>
+								<h3 className={`${active && 'text-primary'} font-medium transition whitespace-nowrap`}>{doctor.name}</h3>
 								<p className='text-sm'>{doctor.specialty}</p>
 							</div>
 						</div>

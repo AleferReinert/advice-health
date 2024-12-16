@@ -1,5 +1,5 @@
 'use client'
-import { mock } from '@/app/mock'
+import { mockMenu } from '@/mock/menu.mock'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FaUserCircle } from 'react-icons/fa'
@@ -7,9 +7,9 @@ import { Container } from '../Container/Container'
 
 export function Header() {
 	const pathname = usePathname()
-	let title = mock.menu[0].title
-	let description = mock.menu[0].description
-	const currentMenu = mock.menu.find(item => item.url === pathname)
+	let title = mockMenu[0].title
+	let description = mockMenu[0].description
+	const currentMenu = mockMenu.find(item => item.url === pathname)
 
 	if (currentMenu) {
 		title = currentMenu.title

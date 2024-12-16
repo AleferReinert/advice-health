@@ -1,4 +1,4 @@
-import { mock } from '@/app/mock'
+import { mockMenu } from '@/mock/menu.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 import { Header } from './Header'
@@ -18,12 +18,12 @@ export const Default: Story = {
 
 		await step('Render title', () => {
 			const title = canvas.getByRole('heading', { level: 1 })
-			expect(title).toHaveTextContent(mock.menu[0].title)
+			expect(title).toHaveTextContent(mockMenu[0].title)
 		})
 
 		await step('Render description', () => {
 			const description = canvas.getByRole('paragraph')
-			expect(description).toHaveTextContent(mock.menu[0].description)
+			expect(description).toHaveTextContent(mockMenu[0].description)
 		})
 
 		await step('Render profile: photo and name', () => {

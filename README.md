@@ -44,3 +44,6 @@ Webapp para consultório médico.
 - **TypeScript:** Superconjunto de JavaScript que adiciona tipagem estática ao código.
 - **Vercel:** Hospedagem de projetos em Next.
 
+## Atenção
+
+Proibida a cópia e utilização do código.

@@ -3,11 +3,11 @@ import { Agenda, AppointmentProps } from '@/components/Agenda/Agenda'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { ReminderProps, Reminders } from '@/components/Reminders/Reminders'
 import { Stats } from '@/components/Stats/Stats'
+import { mockAgenda } from '@/mock/agenda.mock'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
 import Calendar, { CalendarProps } from 'react-calendar'
-import { mock } from './mock'
 
 interface SummaryProps {
 	appointments: number
@@ -28,7 +28,7 @@ export default function Home() {
 
 	const updateAgendaData = (date: Date) => {
 		const formattedDate = format(date, 'yyyy-MM-dd', { locale: ptBR })
-		const dayData = mock.agenda[formattedDate] || {
+		const dayData = mockAgenda[formattedDate] || {
 			summary: { appointments: 0, patientsAttended: 0, revenue: 'R$ 0,00' },
 			appointments: [],
 			reminders: []
@@ -69,7 +69,9 @@ export default function Home() {
 						<Stats title='Pacientes atendidos' value={agenda?.summary.patientsAttended || 0} loading={loading} />
 						<Stats title='Faturamento do dia' value={agenda?.summary.revenue || 'R$ 0,00'} loading={loading} />
 					</div>
-					<Agenda items={agenda?.appointments || []} loading={loading} />
+					<BoxContent title='Agenda'>
+						<Agenda items={agenda?.appointments || []} loading={loading} showDoctor />
+					</BoxContent>
 					<Reminders reminders={agenda?.reminders || []} onToggleReminder={handleToggleReminder} loading={loading} />
 				</div>
 				<BoxContent>

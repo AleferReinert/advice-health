@@ -1,4 +1,4 @@
-import { mock } from '@/app/mock'
+import { mockMenu } from '@/mock/menu.mock'
 import { ReactNode } from 'react'
 import { Toaster } from 'sonner'
 import { Container } from '../Container/Container'
@@ -21,7 +21,7 @@ export function Layout({ children }: LayoutProps) {
 				}}
 			/>
 			<div className='grid grid-cols-1 md:grid-cols-[min-content_1fr] min-h-full'>
-				<Sidebar menu={mock.menu} />
+				<Sidebar menu={mockMenu} />
 				<div>
 					<Header />
 					<main>

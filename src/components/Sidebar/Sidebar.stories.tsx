@@ -1,4 +1,4 @@
-import { mock } from '@/app/mock'
+import { mockMenu } from '@/mock/menu.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
 import { Sidebar } from './Sidebar'
@@ -7,7 +7,7 @@ const meta: Meta<typeof Sidebar> = {
 	title: 'Components/Sidebar',
 	component: Sidebar,
 	args: {
-		menu: mock.menu
+		menu: mockMenu
 	}
 }
 
@@ -30,7 +30,7 @@ export const Default: Story = {
 		})
 
 		await step('Render links with href, title and icon', () => {
-			mock.menu.map((item, index) => {
+			mockMenu.map((item, index) => {
 				const link = canvas.getAllByRole('link')[index]
 				expect(link).toHaveAttribute('href', item.url)
 				expect(link).toHaveAttribute('title', item.title)
