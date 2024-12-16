@@ -1,0 +1,55 @@
+{
+	"name": "advice-health",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build",
+		"test-storybook": "test-storybook",
+		"prepare": "husky",
+		"chromatic": "npx chromatic"
+	},
+	"dependencies": {
+		"@loadable/component": "^5.16.4",
+		"date-fns": "^4.1.0",
+		"next": "14.2.6",
+		"react": "^18",
+		"react-calendar": "^5.1.0",
+		"react-dom": "^18",
+		"react-icons": "^5.3.0",
+		"react-slick": "^0.30.2",
+		"slick-carousel": "^1.8.1",
+		"sonner": "^1.5.0",
+		"tailwind-variants": "^0.2.1"
+	},
+	"devDependencies": {
+		"@chromatic-com/storybook": "1.9.0",
+		"@storybook/addon-essentials": "8.3.4",
+		"@storybook/addon-interactions": "^8.3.4",
+		"@storybook/addon-links": "8.3.4",
+		"@storybook/blocks": "8.3.4",
+		"@storybook/nextjs": "8.3.4",
+		"@storybook/react": "8.3.4",
+		"@storybook/test": "^8.3.4",
+		"@storybook/test-runner": "^0.19.1",
+		"@types/loadable__component": "^5.13.9",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"@types/react-slick": "^0.23.13",
+		"chromatic": "^11.12.5",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.6",
+		"eslint-plugin-storybook": "^0.9.0",
+		"husky": "^9.1.6",
+		"postcss": "^8",
+		"storybook": "8.3.4",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5"
+	}
+}
+

@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+	@apply focus-visible:outline-none;
+}
+
+svg,
+button,
+input {
+	@apply focus:outline-none focus-visible:outline-none;
+}
+
+body {
+	@apply font-sans;
+}
+
+table {
+	@apply w-full text-left;
+
+	& thead {
+		@apply text-gray-700 font-semibold text-sm align-middle;
+	}
+
+	& tbody tr {
+		@apply text-gray-700 border-b odd:bg-gray-100;
+	}
+
+	& th,
+	td {
+		@apply py-3 pr-4 leading-none first:pl-4 [&:nth-child(2)]:text-left;
+	}
+}
+
+/* react-calendar */
+.react-calendar {
+	@apply !w-[300px] !border-0 !bg-white;
+}
+
+.react-calendar__navigation {
+	@apply flex gap-4 !text-gray-700;
+}
+
+.react-calendar__month-view__weekdays {
+	@apply my-2 text-center font-medium text-sm text-gray-700;
+}
+
+.react-calendar__navigation button {
+	@apply !min-w-min;
+
+	&:hover,
+	&:focus {
+		@apply !bg-transparent;
+	}
+}
+
+.react-calendar__tile {
+	@apply p-2 text-center rounded-md transition-all;
+}
+
+.react-calendar__month-view__days__day--weekend {
+	@apply !text-gray-500;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+	@apply text-gray-700 no-underline;
+}
+
+.react-calendar__tile--active,
+.react-calendar__tile:enabled:hover {
+	@apply !bg-primary !text-white !font-bold;
+}
+
