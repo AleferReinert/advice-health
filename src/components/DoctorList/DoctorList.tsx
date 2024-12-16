@@ -19,8 +19,6 @@ interface DoctorListProps {
 }
 
 export const DoctorList = ({ doctorList, onSelectDoctor, loading, selectedDoctor }: DoctorListProps) => {
-	console.log('selectedDoctor: ', selectedDoctor)
-
 	return loading ? (
 		<Loading type='component' className='h-16' />
 	) : (
@@ -32,7 +30,11 @@ export const DoctorList = ({ doctorList, onSelectDoctor, loading, selectedDoctor
 					<div
 						key={doctor.id}
 						onClick={() => onSelectDoctor(doctor.id)}
-						className='cursor-pointer flex gap-8 items-center justify-between py-2 -mx-4 px-4 hover:bg-gray-100 transition'
+						className={`
+							${active ? 'border-primary' : 'border-transparent'} 
+							border-l-2 cursor-pointer flex gap-8 items-center justify-between py-2 -mx-4 px-4 transition-all
+							hover:bg-gray-100
+						`}
 					>
 						<div className='flex gap-4 w-max'>
 							<Image alt={doctor.name} src={doctor.photo} width={48} height={48} className='rounded-full size-12' />

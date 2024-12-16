@@ -3,6 +3,7 @@ import { BoxContent } from '../BoxContent/BoxContent'
 import { Loading } from '../Loading/Loading'
 
 export interface ReminderProps {
+	date: Date
 	status: 'Concluído' | 'Pendente' | 'Atrasado'
 	isCompleted: boolean
 	text: string

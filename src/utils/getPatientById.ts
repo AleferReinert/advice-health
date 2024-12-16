@@ -1,4 +1,4 @@
-import { PatientProps } from '@/components/Agenda/Agenda'
+import { PatientProps } from '@/app/pacientes/page'
 import { mockPatients } from '@/mock/patients.mock'
 
 export function getPatientById(id: string): PatientProps | undefined {

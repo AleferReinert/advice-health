@@ -34,7 +34,7 @@ table {
 
 	& th,
 	td {
-		@apply py-3 pr-4 leading-none first:pl-4 [&:nth-child(2)]:text-left;
+		@apply py-3 px-4 leading-none [&:nth-child(2)]:text-left;
 	}
 }
 
@@ -43,6 +43,27 @@ table {
 	@apply !w-[300px] !border-0 !bg-white;
 }
 
+.react-calendar__month-view__days__day,
+button.react-calendar__month-view__days__day--weekend {
+	@apply cursor-default pointer-events-none !text-gray-400;
+}
+
+/* estilizar dias, meses, anos e decadas com compromissos */
+.hasAppointment,
+.react-calendar__month-view__days__day--weekend.hasAppointment,
+.react-calendar__century-view__decades__decade:not(:disabled),
+.react-calendar__decade-view__years__year:not(:disabled),
+.react-calendar__year-view__months__month:not(:disabled) {
+	@apply !text-primary font-medium cursor-pointer pointer-events-auto;
+}
+
+.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasAppointment {
+	@apply !text-white;
+}
+
+.react-calendar__navigation__arrow {
+	@apply transition hover:text-primary disabled:opacity-0;
+}
 .react-calendar__navigation {
 	@apply flex gap-4 !text-gray-700;
 }

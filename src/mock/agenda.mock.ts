@@ -1,39 +1,38 @@
-import { AgendaProps } from '@/app/page'
-import { add, format } from 'date-fns'
-import { ptBR } from 'date-fns/locale/pt-BR'
+import { AppointmentProps } from '@/components/Agenda/Agenda'
 
-const currentDate = format(new Date(), 'yyyy-MM-dd', { locale: ptBR })
-const tomorrow = format(add(new Date(), { days: 1 }), 'yyyy-MM-dd', { locale: ptBR })
-
-export const mockAgenda: { [key: string]: AgendaProps } = {
-	[currentDate]: {
-		summary: {
-			appointments: 12,
-			patientsAttended: 2,
-			revenue: 'R$ 596,00'
-		},
-		appointments: [
-			{ time: '08:00', patientId: '1', doctorId: '1' },
-			{ time: '10:00', patientId: '2', doctorId: '4' }
-		],
-		reminders: [
-			{ text: 'Revisar pagamentos pendentes', status: 'Concluído', priority: 'Baixa', isCompleted: true },
-			{ text: 'Atualizar horários dos médicos', status: 'Atrasado', priority: 'Alta', isCompleted: false }
-		]
-	},
-	[tomorrow]: {
-		summary: {
-			appointments: 24,
-			patientsAttended: 7,
-			revenue: 'R$ 1.274,00'
-		},
-		appointments: [
-			{ time: '09:00', patientId: '2', doctorId: '2' },
-			{ time: '11:30', patientId: '3', doctorId: '2' }
-		],
-		reminders: [
-			{ text: 'Enviar relatório mensal ao administrador', status: 'Pendente', priority: 'Alta', isCompleted: false },
-			{ text: 'Checar estoque de material de escritório', status: 'Pendente', priority: 'Média', isCompleted: false }
-		]
-	}
-}
+export const mockAgenda: AppointmentProps[] = [
+	{ date: new Date(2024, 9, 20, 9, 0), patientId: '1', doctorId: '1', attended: true },
+	{ date: new Date(2024, 9, 20, 10, 0), patientId: '2', doctorId: '2', attended: false },
+	{ date: new Date(2024, 10, 20, 11, 0), patientId: '3', doctorId: '3', attended: true },
+	{ date: new Date(2024, 10, 20, 12, 0), patientId: '4', doctorId: '4', attended: false },
+	{ date: new Date(2024, 10, 21, 9, 0), patientId: '5', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 21, 10, 0), patientId: '6', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 21, 11, 0), patientId: '7', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 21, 12, 0), patientId: '8', doctorId: '4', attended: false },
+	{ date: new Date(2024, 11, 22, 9, 0), patientId: '9', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 22, 10, 0), patientId: '10', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 22, 11, 0), patientId: '1', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 22, 12, 0), patientId: '2', doctorId: '4', attended: false },
+	{ date: new Date(2024, 11, 23, 9, 0), patientId: '3', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 23, 10, 0), patientId: '4', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 23, 11, 0), patientId: '5', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 23, 12, 0), patientId: '6', doctorId: '4', attended: false },
+	{ date: new Date(2024, 11, 24, 9, 0), patientId: '7', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 24, 10, 0), patientId: '8', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 24, 11, 0), patientId: '9', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 24, 12, 0), patientId: '10', doctorId: '4', attended: false },
+	{ date: new Date(2024, 11, 25, 9, 0), patientId: '1', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 25, 10, 0), patientId: '2', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 25, 11, 0), patientId: '3', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 25, 12, 0), patientId: '4', doctorId: '4', attended: false },
+	{ date: new Date(2024, 11, 26, 9, 0), patientId: '5', doctorId: '1', attended: true },
+	{ date: new Date(2024, 11, 26, 10, 0), patientId: '6', doctorId: '2', attended: false },
+	{ date: new Date(2024, 11, 26, 11, 0), patientId: '7', doctorId: '3', attended: true },
+	{ date: new Date(2024, 11, 26, 12, 0), patientId: '8', doctorId: '4', attended: false },
+	{ date: new Date(new Date().setHours(8, 0, 0, 0)), patientId: '1', doctorId: '1', attended: true },
+	{ date: new Date(new Date().setHours(9, 0, 0, 0)), patientId: '2', doctorId: '1', attended: true },
+	{ date: new Date(new Date().setHours(10, 0, 0, 0)), patientId: '7', doctorId: '1', attended: false },
+	{ date: new Date(new Date().setHours(14, 0, 0, 0)), patientId: '3', doctorId: '2', attended: false },
+	{ date: new Date(new Date().setHours(16, 0, 0, 0)), patientId: '4', doctorId: '2', attended: false },
+	{ date: new Date(2025, 0, 4, 12, 0), patientId: '8', doctorId: '4', attended: false }
+]

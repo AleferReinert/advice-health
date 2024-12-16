@@ -20,13 +20,11 @@ Webapp para consultório médico.
    ```
    npm run prepare
    ```
-5. Defina as variaveis de ambiente como em .env.example.
-
-6. Inicie o servidor de desenvolvimento:
+5. Inicie o servidor de desenvolvimento:
    ```
    npm run dev
    ```
-7. Inicie o Storybook:
+6. Inicie o Storybook:
    ```
    npm run storybook
    ```
@@ -47,3 +45,4 @@ Webapp para consultório médico.
 ## Atenção
 
 Proibida a cópia e utilização do código.
+

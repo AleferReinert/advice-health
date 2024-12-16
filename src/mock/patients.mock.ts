@@ -1,4 +1,4 @@
-import { PatientProps } from '@/components/Agenda/Agenda'
+import { PatientProps } from '@/app/pacientes/page'
 
 export const mockPatients: PatientProps[] = [
 	{

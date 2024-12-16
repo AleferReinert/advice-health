@@ -1,15 +1,14 @@
 'use client'
 import { Agenda } from '@/components/Agenda/Agenda'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
+import { CalendarCustom } from '@/components/CalendarCustom/CalendarCustom'
 import { DoctorList, DoctorProps } from '@/components/DoctorList/DoctorList'
 import { mockAgenda } from '@/mock/agenda.mock'
 import { mockDoctors } from '@/mock/doctors.mock'
 import { mockMenu } from '@/mock/menu.mock'
 import { getDoctorById } from '@/utils/getDoctorById'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale/pt-BR'
 import { useEffect, useState } from 'react'
-import Calendar, { CalendarProps } from 'react-calendar'
+import { CalendarProps } from 'react-calendar'
 
 export default function DoctorsPage() {
 	const [loading, setLoading] = useState(true)
@@ -17,17 +16,16 @@ export default function DoctorsPage() {
 	const [selectedDate, setSelectedDate] = useState<Date>(new Date())
 	const [selectedDoctor, setSelectedDoctor] = useState<string | null>(null)
 	const [doctorSchedule, setDoctorSchedule] = useState<any[]>([])
-	const formattedDate = format(selectedDate, 'yyyy-MM-dd', { locale: ptBR })
 
 	useEffect(() => {
 		document.title = `${mockMenu[1].title} - AdviceHealth`
 		setDoctorList(mockDoctors)
 		setSelectedDoctor(mockDoctors[0].id)
-		const doctorData = mockAgenda[formattedDate]
-		const firstDoctorSchedule = doctorData ? doctorData.appointments.filter(appointment => appointment.doctorId === mockDoctors[0].id) : []
-		setDoctorSchedule(firstDoctorSchedule)
+		setDoctorSchedule(
+			mockAgenda.filter(item => item.doctorId === mockDoctors[0].id && item.date.toDateString() === selectedDate.toDateString())
+		)
 		setLoading(false)
-	}, [formattedDate])
+	}, [])
 
 	const handleDateChange: CalendarProps['onChange'] = value => {
 		if (value instanceof Date) {
@@ -37,9 +35,7 @@ export default function DoctorsPage() {
 
 	const handleDoctorSelect = (id: string) => {
 		setSelectedDoctor(id)
-		const doctorData = mockAgenda[formattedDate]
-		const selectedDoctorSchedule = doctorData ? doctorData.appointments.filter(appointment => appointment.doctorId === id) : []
-		setDoctorSchedule(selectedDoctorSchedule)
+		setDoctorSchedule(mockAgenda.filter(item => item.doctorId === id && item.date.toDateString() === selectedDate.toDateString()))
 	}
 
 	return (
@@ -57,9 +53,7 @@ export default function DoctorsPage() {
 						</BoxContent>
 					)}
 				</div>
-				<BoxContent>
-					<Calendar onChange={handleDateChange} value={selectedDate} locale='pt-BR' className='react-calendar' />
-				</BoxContent>
+				<CalendarCustom selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 			</section>
 		</div>
 	)
