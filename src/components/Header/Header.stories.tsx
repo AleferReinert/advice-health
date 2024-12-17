@@ -23,7 +23,7 @@ export const Default: Story = {
 
 		await step('Render description', () => {
 			const description = canvas.getByRole('paragraph')
-			expect(description).toHaveTextContent(mockMenu[0].description)
+			expect(description).toHaveTextContent(mockMenu[0].description!)
 		})
 
 		await step('Render profile: photo and name', () => {
