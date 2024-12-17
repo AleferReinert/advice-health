@@ -1,8 +1,6 @@
 import { AiOutlineClose, AiOutlineEdit } from 'react-icons/ai'
 
-interface ActionButtonsProps {}
-
-export function ActionButtons({}: ActionButtonsProps) {
+export function ActionButtons() {
 	return (
 		<div className='flex gap-4'>
 			{/* <input

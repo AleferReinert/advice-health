@@ -10,7 +10,7 @@ const tailwind = resolveConfig(tailwindConfig)
 const preview: Preview = {
 	decorators: [
 		story => (
-			<div className='font-poppins font-audiowide'>
+			<div className='font-poppins bg-gray-100 text-gray-600 h-svh'>
 				<Toaster
 					richColors
 					toastOptions={{

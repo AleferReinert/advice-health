@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import { Loading } from '../Loading/Loading'
-import { Subtitle } from '../Subtitle/Subtitle'
 
 export interface BoxContentProps {
 	title?: ReactNode
@@ -13,10 +12,12 @@ export interface BoxContentProps {
 export function BoxContent({ title, children, withoutChildrenPadding, loading, className }: BoxContentProps) {
 	return (
 		<div className={`bg-white shadow-md rounded-lg pt-4 overflow-x-auto h-min ${className ? className : ''}`}>
-			{title && <Subtitle>{title}</Subtitle>}
+			{title && <h2 className='`text-gray-600 text-lg font-medium px-4 pb-2'>{title}</h2>}
 
 			{loading ? (
-				<Loading type='component' className='h-8' />
+				<div className='p-4 pt-0'>
+					<Loading type='component' className='h-8' />
+				</div>
 			) : (
 				<div className={withoutChildrenPadding ? '' : 'px-4 pb-4'}>{children}</div>
 			)}

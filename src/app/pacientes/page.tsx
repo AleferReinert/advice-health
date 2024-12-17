@@ -6,31 +6,6 @@ import { getPatientById } from '@/utils/getPatientById'
 import { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
-export interface PatientProps {
-	id: string
-	fullName: string
-	dateOfBirth: string
-	cpf: string
-	phone: string
-	email: string
-	gender: 'male' | 'female' | 'other'
-	address: {
-		postalCode: string
-		street: string
-		number: string
-		complement?: string
-		district: string
-		city: string
-		state: string
-	}
-	emergencyContact?: {
-		name: string
-		phone: string
-		relation: string
-	}
-	registrationDate: string
-}
-
 export default function Patients() {
 	const [loading, setLoading] = useState(true)
 	const [selectedDate, setSelectedDate] = useState<Date>()

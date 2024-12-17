@@ -6,7 +6,7 @@ const meta: Meta<typeof Container> = {
 	title: 'Components/Container',
 	component: Container,
 	args: {
-		children: <p className='bg-secondary text-white text-center py-4'>html children with background to view dimensions</p>
+		children: <p className='bg-primary text-white text-center py-4'>html children with background to view dimensions</p>
 	}
 }
 

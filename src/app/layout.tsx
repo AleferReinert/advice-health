@@ -20,7 +20,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 	return (
 		<html lang='pt-br'>
 			<head>
-				<meta name='theme-color' content='#041634' />
+				<meta name='theme-color' content='#115e59 ' />
 			</head>
 			<body className={`${poppins.variable} bg-gray-100 text-gray-600 h-svh`}>
 				<Layout>{children}</Layout>

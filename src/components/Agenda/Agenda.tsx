@@ -3,7 +3,7 @@ import { getDoctorById } from '@/utils/getDoctorById'
 import { getPatientById } from '@/utils/getPatientById'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
-import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export interface AppointmentProps {
@@ -59,12 +59,16 @@ export function Agenda({ items, showDoctor = false, showData, showActionButtons 
 			</thead>
 			<tbody>
 				{items.map((item, index) => {
-					const date = format(item.date, 'dd/MM/yyyy', { locale: ptBR })
+					const date = format(item.date, 'dd/MM/yy', { locale: ptBR })
 					const hour = format(item.date, 'HH:mm', { locale: ptBR }) + 'h'
 					const doctorName = getDoctorById(item.doctorId)?.name
 					const patientName = getPatientById(item.patientId)?.fullName
 					const price = formatPrice(item.price)
-					const statusIcon = item.attended ? <AiOutlineCheck className='text-primary' /> : <AiOutlineClose />
+					const statusIcon = item.attended ? (
+						<AiOutlineCheckCircle className='text-primary' />
+					) : (
+						<AiOutlineCloseCircle className='text-red-600' />
+					)
 
 					return (
 						<tr key={index}>

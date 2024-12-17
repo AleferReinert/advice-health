@@ -1,4 +1,4 @@
-import { PatientProps } from '@/app/pacientes/page'
+import { PatientProps } from '@/components/NewAppointment/NewAppointment'
 
 export const mockPatients: PatientProps[] = [
 	{

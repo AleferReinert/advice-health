@@ -1,6 +1,7 @@
 import { mockMenu } from '@/mock/menu.mock'
 import { ReactNode } from 'react'
 import { Toaster } from 'sonner'
+import { Container } from '../Container/Container'
 import { Header } from '../Header/Header'
 import { Sidebar } from '../Sidebar/Sidebar'
 
@@ -21,9 +22,11 @@ export function Layout({ children }: LayoutProps) {
 			/>
 			<div className='md:grid md:grid-cols-[min-content_1fr] min-h-full'>
 				<Sidebar menu={mockMenu} />
-				<div>
+				<div className='flex flex-col gap-4 lg:gap-8'>
 					<Header />
-					<main className='p-4 lg:p-8'>{children}</main>
+					<Container>
+						<main className='pb-8'>{children}</main>
+					</Container>
 				</div>
 			</div>
 		</>
