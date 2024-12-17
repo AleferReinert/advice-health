@@ -1,5 +1,5 @@
 import { MenuItemProps } from '@/components/Sidebar/Sidebar'
-import { AiOutlineCalendar, AiOutlineHome, AiOutlineTeam } from 'react-icons/ai'
+import { AiOutlineCalendar, AiOutlineHome, AiOutlineLogout, AiOutlineTeam } from 'react-icons/ai'
 
 export const mockMenu: MenuItemProps[] = [
 	{
@@ -19,5 +19,10 @@ export const mockMenu: MenuItemProps[] = [
 		icon: <AiOutlineTeam role='img' />,
 		url: '/pacientes',
 		description: 'Visualização e edição de dados de pacientes, agendamentos e cobranças.'
+	},
+	{
+		title: 'Sair',
+		icon: <AiOutlineLogout role='img' />,
+		url: '/logout'
 	}
 ]
