@@ -17,7 +17,7 @@ export function Header() {
 	}
 
 	return (
-		<header className='py-4 text-gray-700 border-b mb-6'>
+		<header className='py-4 text-gray-700 border-b'>
 			<Container>
 				<div className='flex justify-between items-center leading-none'>
 					<div>

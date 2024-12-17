@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BoxContent } from '../BoxContent/BoxContent'
 import { Loading } from '../Loading/Loading'
@@ -12,11 +13,21 @@ export interface ReminderProps {
 
 interface RemindersProps {
 	reminders: ReminderProps[]
-	onToggleReminder: (index: number) => void
+	setReminders: Dispatch<SetStateAction<ReminderProps[]>>
 	loading: boolean
 }
 
-export function Reminders({ reminders, onToggleReminder, loading }: RemindersProps) {
+export function Reminders({ reminders, setReminders, loading }: RemindersProps) {
+	const toggleIsCompleted = (index: number) => {
+		setReminders(prevReminders =>
+			prevReminders.map((reminder, i) => (i === index ? { ...reminder, isCompleted: !reminder.isCompleted } : reminder))
+		)
+	}
+
+	const deleteReminder = (index: number) => {
+		setReminders(prevReminders => prevReminders.filter((_, i) => i !== index))
+	}
+
 	return (
 		<section>
 			<BoxContent title='Lembretes'>
@@ -42,21 +53,29 @@ export function Reminders({ reminders, onToggleReminder, loading }: RemindersPro
 												<input
 													type='checkbox'
 													checked={reminder.isCompleted}
-													onChange={() => onToggleReminder(index)}
 													className='h-5 w-5 text-teal-500'
+													onChange={() => toggleIsCompleted(index)}
 												/>
 											</td>
 											<td>{reminder.text}</td>
 											<td>{reminder.priority}</td>
 											<td
 												className={
-													reminder.isCompleted ? 'text-primary' : reminder.status === 'Atrasado' ? 'text-red-600' : 'text-yellow-600'
+													reminder.isCompleted
+														? 'text-primary'
+														: reminder.status === 'Atrasado'
+														? 'text-red-600'
+														: 'text-yellow-600'
 												}
 											>
 												{reminder.isCompleted ? 'Concluído' : reminder.status}
 											</td>
 											<td className='text-center'>
-												<button className='transition hover:text-red-600' title='Excluir lembrete'>
+												<button
+													className='transition hover:text-red-600'
+													title='Excluir lembrete'
+													onClick={() => deleteReminder(index)}
+												>
 													<AiOutlineClose size={20} />
 												</button>
 											</td>

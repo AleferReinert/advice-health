@@ -1,7 +1,6 @@
 import { mockMenu } from '@/mock/menu.mock'
 import { ReactNode } from 'react'
 import { Toaster } from 'sonner'
-import { Container } from '../Container/Container'
 import { Header } from '../Header/Header'
 import { Sidebar } from '../Sidebar/Sidebar'
 
@@ -24,9 +23,7 @@ export function Layout({ children }: LayoutProps) {
 				<Sidebar menu={mockMenu} />
 				<div>
 					<Header />
-					<main>
-						<Container>{children}</Container>
-					</main>
+					<main className='p-8'>{children}</main>
 				</div>
 			</div>
 		</>

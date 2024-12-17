@@ -1,12 +1,11 @@
 'use client'
-import { ActionButtons } from '@/components/ActionButtons/ActionButtons'
+import { Agenda } from '@/components/Agenda/Agenda'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Loading } from '@/components/Loading/Loading'
-import { Subtitle } from '@/components/Subtitle/Subtitle'
 import { mockAgenda } from '@/mock/agenda.mock'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale/pt-BR'
+import { getPatientById } from '@/utils/getPatientById'
 import { useEffect, useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
 
 export interface PatientProps {
 	id: string
@@ -35,48 +34,48 @@ export interface PatientProps {
 
 export default function Patients() {
 	const [loading, setLoading] = useState(true)
-	const [selectedDate, setSelectedDate] = useState<Date>(new Date())
-	const formattedDate = format(selectedDate, 'yyyy-MM-dd', { locale: ptBR })
-	const agendaForSelectedDate = mockAgenda.filter(item => item.date.toDateString() === selectedDate.toDateString())
+	const [selectedDate, setSelectedDate] = useState<Date>()
+	const [searchQuery, setSearchQuery] = useState<string>('')
+
+	const agendaForSelectedDate = selectedDate
+		? mockAgenda.filter(item => item.date.toDateString() === selectedDate.toDateString())
+		: mockAgenda
+
+	const filteredAgenda = agendaForSelectedDate.filter(item => {
+		const patient = getPatientById(item.patientId)
+		return patient?.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+	})
+
+	console.log(filteredAgenda)
 
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 1000)
 		document.title = `Pacientes - AdviceHealth`
-	}, [formattedDate])
+	}, [])
 
 	return (
 		<>
+			<div className='mb-4 max-w-80 border bg-gray-200 py-1 px-4'>
+				<div className='flex w-full items-center justify-between gap-4'>
+					<input
+						type='text'
+						placeholder='Pesquisar paciente...'
+						className='placeholder:text-inherit bg-transparent w-full py-2 focus:text-gray-900'
+						value={searchQuery}
+						onChange={e => setSearchQuery(e.target.value)}
+					/>
+					<button className='transition hover:text-primary'>
+						<AiOutlineSearch size={28} />
+					</button>
+				</div>
+			</div>
 			<BoxContent>
-				<Subtitle>{`Pacientes - ${formattedDate}`}</Subtitle>
 				{loading ? (
 					<Loading type='component' className='h-8' />
 				) : (
 					<>
-						{agendaForSelectedDate.length > 0 ? (
-							<table>
-								<thead>
-									<tr>
-										<th>Data</th>
-										<th>Horário</th>
-										<th>Médico</th>
-										<th>Paciente</th>
-										<th>Ações</th>
-									</tr>
-								</thead>
-								<tbody>
-									{agendaForSelectedDate.map((item, index) => (
-										<tr key={index}>
-											<td>23/12/2024</td>
-											<td>12:00</td>
-											<td>Dr José Paulo</td>
-											<td>Alefer Reinert</td>
-											<td className='w-0'>
-												<ActionButtons />
-											</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
+						{filteredAgenda.length > 0 ? (
+							<Agenda items={filteredAgenda} loading={loading} showData />
 						) : (
 							<p>Nenhum compromisso para este dia.</p>
 						)}

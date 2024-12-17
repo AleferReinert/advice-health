@@ -1,4 +1,5 @@
 import { Layout } from '@/components/Layout/Layout'
+import { mockMenu } from '@/mock/menu.mock'
 import { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
@@ -11,7 +12,7 @@ const poppins = Poppins({
 
 export async function generateMetadata(): Promise<Metadata | null> {
 	return {
-		title: 'Dashboard - AdviceHealth'
+		title: `${mockMenu[0].title} - AdviceHealth`
 	}
 }
 
