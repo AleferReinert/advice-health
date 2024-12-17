@@ -5,5 +5,5 @@ interface SubtitleProps extends ComponentProps<'h2'> {
 }
 
 export function Subtitle({ children, className }: SubtitleProps) {
-	return <h2 className={`text-gray-600 text-lg font-medium pb-2 ${className ? className : ''}`}>{children}</h2>
+	return <h2 className={`text-gray-600 text-lg font-medium px-4 pb-2 ${className ? className : ''}`}>{children}</h2>
 }

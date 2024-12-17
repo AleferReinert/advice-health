@@ -1,7 +1,6 @@
 'use client'
 import { Agenda } from '@/components/Agenda/Agenda'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
-import { Loading } from '@/components/Loading/Loading'
 import { mockAgenda } from '@/mock/agenda.mock'
 import { getPatientById } from '@/utils/getPatientById'
 import { useEffect, useState } from 'react'
@@ -46,8 +45,6 @@ export default function Patients() {
 		return patient?.fullName.toLowerCase().includes(searchQuery.toLowerCase())
 	})
 
-	console.log(filteredAgenda)
-
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 1000)
 		document.title = `Pacientes - AdviceHealth`
@@ -69,18 +66,8 @@ export default function Patients() {
 					</button>
 				</div>
 			</div>
-			<BoxContent>
-				{loading ? (
-					<Loading type='component' className='h-8' />
-				) : (
-					<>
-						{filteredAgenda.length > 0 ? (
-							<Agenda items={filteredAgenda} loading={loading} showData />
-						) : (
-							<p>Nenhum compromisso para este dia.</p>
-						)}
-					</>
-				)}
+			<BoxContent loading={loading} withoutChildrenPadding>
+				<Agenda items={filteredAgenda} showData />
 			</BoxContent>
 		</>
 	)

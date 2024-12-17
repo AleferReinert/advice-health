@@ -8,7 +8,6 @@ import { mockDoctors } from '@/mock/doctors.mock'
 import { mockMenu } from '@/mock/menu.mock'
 import { getDoctorById } from '@/utils/getDoctorById'
 import { useEffect, useState } from 'react'
-import { CalendarProps } from 'react-calendar'
 
 export default function DoctorsPage() {
 	const [loading, setLoading] = useState(true)
@@ -22,39 +21,35 @@ export default function DoctorsPage() {
 		setDoctorList(mockDoctors)
 		setSelectedDoctor(mockDoctors[0].id)
 		setDoctorSchedule(
-			mockAgenda.filter(item => item.doctorId === mockDoctors[0].id && item.date.toDateString() === selectedDate.toDateString())
+			mockAgenda.filter(
+				item => item.doctorId === mockDoctors[0].id && item.date.toDateString() === selectedDate.toDateString()
+			)
 		)
 		setLoading(false)
 	}, [])
 
-	const handleDateChange: CalendarProps['onChange'] = value => {
-		if (value instanceof Date) {
-			setSelectedDate(value)
-		}
-	}
-
 	const handleDoctorSelect = (id: string) => {
 		setSelectedDoctor(id)
-		setDoctorSchedule(mockAgenda.filter(item => item.doctorId === id && item.date.toDateString() === selectedDate.toDateString()))
+		setDoctorSchedule(
+			mockAgenda.filter(item => item.doctorId === id && item.date.toDateString() === selectedDate.toDateString())
+		)
 	}
 
 	return (
-		<div className='grid gap-4'>
-			<section className='grid grid-cols-1 md:grid-cols-[min-content_1fr_min-content] gap-4'>
-				<div className='min-w-80'>
-					<BoxContent title='Médicos'>
-						<DoctorList doctorList={doctorList} onSelectDoctor={handleDoctorSelect} loading={loading} selectedDoctor={selectedDoctor} />
+		<div className='flex flex-col gap-4'>
+			<div className='grid gap-4 md:grid-cols-[min-content_1fr] xl:grid-cols-2'>
+				<CalendarCustom selectedDate={selectedDate} setSelectedDate={setSelectedDate} className='min-h-full' />
+				<BoxContent title='Médicos' loading={loading} withoutChildrenPadding>
+					<DoctorList doctorList={doctorList} onSelectDoctor={handleDoctorSelect} selectedDoctor={selectedDoctor} />
+				</BoxContent>
+			</div>
+			<div>
+				{selectedDoctor && (
+					<BoxContent title={getDoctorById(selectedDoctor)?.name} loading={loading} withoutChildrenPadding>
+						<Agenda items={doctorSchedule} showActionButtons />
 					</BoxContent>
-				</div>
-				<div>
-					{selectedDoctor && (
-						<BoxContent title={getDoctorById(selectedDoctor)?.name}>
-							<Agenda items={doctorSchedule} loading={loading} showActionButtons />
-						</BoxContent>
-					)}
-				</div>
-				<CalendarCustom selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-			</section>
+				)}
+			</div>
 		</div>
 	)
 }

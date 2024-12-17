@@ -7,8 +7,10 @@ import { BoxContent } from '../BoxContent/BoxContent'
 interface CalendarCustomProps {
 	selectedDate: Date
 	setSelectedDate: Dispatch<SetStateAction<Date>>
+	className?: string
 }
-export function CalendarCustom({ selectedDate, setSelectedDate }: CalendarCustomProps) {
+
+export function CalendarCustom({ selectedDate, className, setSelectedDate }: CalendarCustomProps) {
 	const handleDateChange: CalendarProps['onChange'] = value => {
 		if (value instanceof Date) {
 			setSelectedDate(value)
@@ -25,7 +27,7 @@ export function CalendarCustom({ selectedDate, setSelectedDate }: CalendarCustom
 	}
 
 	return (
-		<BoxContent>
+		<BoxContent className={className}>
 			<Calendar
 				onChange={handleDateChange}
 				value={selectedDate}
@@ -34,6 +36,14 @@ export function CalendarCustom({ selectedDate, setSelectedDate }: CalendarCustom
 				className='react-calendar'
 				minDate={new Date(Math.min(...mockAgenda.map(item => item.date.getTime())))}
 				maxDate={new Date(Math.max(...mockAgenda.map(item => item.date.getTime())))}
+				formatMonthYear={(locale, date) =>
+					date
+						.toLocaleDateString('pt-BR', {
+							month: 'long',
+							year: 'numeric'
+						})
+						.replace(' de ', '/')
+				}
 				prev2Label={<AiOutlineDoubleLeft />}
 				prevLabel={<AiOutlineLeft />}
 				nextLabel={<AiOutlineRight />}

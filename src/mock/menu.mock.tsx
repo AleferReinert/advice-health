@@ -23,6 +23,7 @@ export const mockMenu: MenuItemProps[] = [
 	{
 		title: 'Sair',
 		icon: <AiOutlineLogout role='img' />,
-		url: '/logout'
+		url: '/logout',
+		description: ''
 	}
 ]

@@ -33,21 +33,20 @@ export default function Home() {
 	}, [selectedDate])
 
 	return (
-		<div className='grid gap-4'>
-			<div className='grid grid-cols-1 md:grid-cols-[3fr_1fr] gap-4'>
-				<div className='flex flex-col gap-4'>
-					<div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-						<Stats title='Agendamentos do dia' value={totalPatientsToday} loading={loading} />
-						<Stats title='Pacientes atendidos' value={patientsAttendedToday} loading={loading} />
-						<Stats title='Faturamento do dia' value={formatPrice(revenue)} loading={loading} />
-					</div>
-					<BoxContent title='Agenda'>
-						<Agenda items={agenda} loading={loading} showDoctor />
-					</BoxContent>
-					<Reminders reminders={reminders} setReminders={setReminders} loading={loading} />
+		<div className='flex flex-col gap-4'>
+			<div className='grid gap-4 grid-cols-1 md:grid-cols-[3fr_2fr] xl:grid-cols-[1fr_2fr]'>
+				<CalendarCustom className='min-h-full' selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+
+				<div className='grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-[1fr_1fr_auto]'>
+					<Stats title='Agendamentos' value={totalPatientsToday} loading={loading} />
+					<Stats title='Atendidos' value={patientsAttendedToday} loading={loading} />
+					<Stats title='Faturamento' value={formatPrice(revenue)} loading={loading} />
 				</div>
-				<CalendarCustom selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 			</div>
+			<BoxContent title='Agenda' withoutChildrenPadding loading={loading}>
+				<Agenda items={agenda} showDoctor />
+			</BoxContent>
+			<Reminders reminders={reminders} loading={loading} />
 		</div>
 	)
 }

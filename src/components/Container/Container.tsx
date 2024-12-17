@@ -5,5 +5,5 @@ interface ContainerProps {
 }
 
 export function Container({ children }: ContainerProps) {
-	return <div className='w-full mx-auto px-8'>{children}</div>
+	return <div className='w-full mx-auto px-4 lg:px-8'>{children}</div>
 }

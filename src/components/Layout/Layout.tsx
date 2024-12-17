@@ -19,11 +19,11 @@ export function Layout({ children }: LayoutProps) {
 					}
 				}}
 			/>
-			<div className='grid grid-cols-1 md:grid-cols-[min-content_1fr] min-h-full'>
+			<div className='md:grid md:grid-cols-[min-content_1fr] min-h-full'>
 				<Sidebar menu={mockMenu} />
 				<div>
 					<Header />
-					<main className='p-8'>{children}</main>
+					<main className='p-4 lg:p-8'>{children}</main>
 				</div>
 			</div>
 		</>
