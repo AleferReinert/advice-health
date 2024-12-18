@@ -65,9 +65,9 @@ export function Agenda({ items, showDoctor = false, showData, showActionButtons 
 					const patientName = getPatientById(item.patientId)?.fullName
 					const price = formatPrice(item.price)
 					const statusIcon = item.attended ? (
-						<AiOutlineCheckCircle className='text-primary' />
+						<AiOutlineCheckCircle className='text-primary' title='Atendido' />
 					) : (
-						<AiOutlineCloseCircle className='text-red-600' />
+						<AiOutlineCloseCircle className='text-red-600' title='Não atendido' />
 					)
 
 					return (

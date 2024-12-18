@@ -27,11 +27,9 @@ export function Reminders({ reminders, loading }: RemindersProps) {
 						<table>
 							<thead>
 								<tr>
-									<th className='text-center'>
-										<span className='hidden sm:inline'>Status</span>
-									</th>
 									<th>Lembrete</th>
 									<th className='hidden lg:table-cell'>Prioridade</th>
+									<th className='text-center'>Status</th>
 									<th className='w-0'>Ações</th>
 								</tr>
 							</thead>
@@ -43,22 +41,22 @@ export function Reminders({ reminders, loading }: RemindersProps) {
 										? 'text-red-600'
 										: 'text-yellow-600'
 									const statusIcon = reminder.isCompleted ? (
-										<AiOutlineCheckCircle size={20} />
+										<AiOutlineCheckCircle size={20} title='Concluído' />
 									) : reminder.status === 'Atrasado' ? (
-										<AiOutlineCloseCircle size={20} />
+										<AiOutlineCloseCircle size={20} title='Atrasado' />
 									) : (
-										<AiOutlineClockCircle size={20} />
+										<AiOutlineClockCircle size={20} title='Pendente' />
 									)
 									const statusText = reminder.isCompleted ? 'Concluído' : reminder.status
 
 									return (
 										<tr key={index}>
+											<td className='whitespace-normal'>{reminder.text}</td>
+											<td className='hidden lg:table-cell'>{reminder.priority}</td>
 											<td className={`w-0 text-center ${statusStyles} `}>
 												<span className='inline-block w-min'>{statusIcon}</span>
 												<span className='hidden'>{statusText}</span>
 											</td>
-											<td className='whitespace-normal'>{reminder.text}</td>
-											<td className='hidden lg:table-cell'>{reminder.priority}</td>
 											<td className='text-center'>
 												<ActionButtons />
 											</td>

@@ -44,7 +44,7 @@ export default function Home() {
 				</div>
 			</div>
 			<BoxContent title='Agenda' withoutChildrenPadding loading={loading}>
-				<Agenda items={agenda} showDoctor />
+				<Agenda items={agenda} showDoctor showActionButtons />
 			</BoxContent>
 			<Reminders reminders={reminders} loading={loading} />
 		</div>
