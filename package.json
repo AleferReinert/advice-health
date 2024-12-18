@@ -41,6 +41,7 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
+		"@types/react-input-mask": "^3.0.6",
 		"@types/react-slick": "^0.23.13",
 		"chromatic": "^11.12.5",
 		"eslint": "^8",
