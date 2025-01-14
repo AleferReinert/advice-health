@@ -1,6 +1,53 @@
 # AdviceHealth
 
-Webapp para consultório médico.
+Aplicação web para consultório médico.
+
+## Requisitos
+
+### Área de Trabalho
+
+Visão gerencial do consultório para seus usuários.
+
+Deve apresentar os seguintes dados estáticos:
+
+- Número de agendamentos do dia
+- Número de pacientes atendidos no dia
+- Faturamento do dia
+- Agenda do dia
+- Avisos/lembretes
+
+### Agendamento de Consultas
+
+Gerenciamento das agendas dos médicos.
+
+Funcionalidades:
+
+- Incluir, alterar, cancelar ou transferir agendamentos
+- Definir e apresentar períodos de ausência dos médicos
+- Realizar o agendamento de consultas, possibilitando:
+  - Coletar os seguintes dados dos pacientes:
+    - Nome completo
+    - CPF
+    - Data de nascimento
+    - Endereço
+    - Outros
+  - Efetuar o pagamento da consulta durante esse processo
+
+### Consulta de Agendamentos
+
+Informações sobre pacientes agendados e atendidos.
+
+Deve apresentar os seguintes dados:
+
+- Dados do paciente
+- Dados do agendamento
+- Dados do médico
+- Valores cobrados
+
+Funcionalidades:
+
+- Editar dados do agendamento
+- Editar dados da cobrança
 
 ## Começando
 
@@ -32,8 +79,8 @@ Webapp para consultório médico.
 
 ## Tecnologias Utilizadas
 
-- **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
 - **Chromatic:** Ferramenta para revisão visual e hospedagem do Storybook.
+- **ESLint:** Ferramenta de linting para identificar e corrigir problemas em código JavaScript/TypeScript.
 - **Husky:** Ferramenta para automatizar Git hooks, permitindo a execução de scripts antes de commits, push e outros eventos.
 - **Next.js:** Framework React para a construção de aplicações web estáticas e dinâmicas.
 - **React:** Biblioteca JavaScript para construir interfaces de usuário.

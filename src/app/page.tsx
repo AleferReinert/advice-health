@@ -26,7 +26,7 @@ export default function Home() {
 		setAgenda(filteredAgenda)
 		setReminders(filteredReminders)
 
-		// Soma o preço de todas consultas concluidas na data selecionada
+		// Sum the price of all completed appointments on the selected date
 		const totalRevenue = filteredAgenda.filter(item => item.attended).reduce((sum, item) => sum + (item.price || 0), 0)
 		setRevenue(totalRevenue)
 		setLoading(false)

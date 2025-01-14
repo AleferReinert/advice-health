@@ -26,6 +26,7 @@ export interface PatientProps {
 	registrationDate: string
 }
 
+// Modal to create a new appointment
 export function NewAppointment() {
 	const fieldsetStyles = 'border rounded-lg p-4'
 	const legendStyles = 'font-medium'

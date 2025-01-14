@@ -11,13 +11,14 @@ interface CalendarCustomProps {
 }
 
 export function CalendarCustom({ selectedDate, className, setSelectedDate }: CalendarCustomProps) {
+	// change date on calendar
 	const handleDateChange: CalendarProps['onChange'] = value => {
 		if (value instanceof Date) {
 			setSelectedDate(value)
 		}
 	}
 
-	// Estilizar dias do calendário que tem compromissos
+	// Style calendar days that have appointments
 	const tileClassName = ({ date, view }: any) => {
 		if (view === 'month') {
 			const hasAppointment = mockAgenda.some(item => item.date.toDateString() === date.toDateString())
