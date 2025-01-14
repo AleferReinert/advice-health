@@ -1,5 +1,5 @@
 'use client'
-import { Dispatch, ReactNode, SetStateAction, useEffect } from 'react'
+import { Dispatch, ReactNode, SetStateAction, useCallback, useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 
 interface ModalProps {
@@ -10,7 +10,7 @@ interface ModalProps {
 }
 
 export function Modal({ title, children, showModal, setShowModal }: ModalProps) {
-	const closeModal = () => setShowModal(false)
+	const closeModal = useCallback(() => setShowModal(false), [setShowModal])
 
 	useEffect(() => {
 		if (showModal)
@@ -19,7 +19,7 @@ export function Modal({ title, children, showModal, setShowModal }: ModalProps) 
 					closeModal()
 				}
 			})
-	}, [showModal])
+	}, [showModal, closeModal])
 
 	return (
 		<div

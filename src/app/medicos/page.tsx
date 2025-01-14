@@ -31,7 +31,7 @@ export default function DoctorsPage() {
 			)
 		)
 		setLoading(false)
-	}, [])
+	}, [selectedDate])
 
 	const handleDoctorSelect = (id: string) => {
 		setSelectedDoctor(id)
