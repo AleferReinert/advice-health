@@ -17,7 +17,7 @@ const metaSocialSharing = '/social-sharing.webp'
 
 export async function generateMetadata(): Promise<Metadata | null> {
 	return {
-		title: `AdviceHealth -${mockMenu[0].title}`
+		title: `AdviceHealth - ${mockMenu[0].title}`
 	}
 }
 

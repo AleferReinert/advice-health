@@ -22,7 +22,7 @@ export default function DoctorsPage() {
 	const [showModal, setShowModal] = useState(false)
 
 	useEffect(() => {
-		document.title = `${mockMenu[1].title} - AdviceHealth`
+		document.title = `AdviceHealth - ${mockMenu[1].title}`
 		setDoctorList(mockDoctors)
 		setSelectedDoctor(mockDoctors[0].id)
 		setDoctorSchedule(

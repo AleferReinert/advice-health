@@ -22,7 +22,7 @@ export default function Patients() {
 
 	useEffect(() => {
 		setTimeout(() => setLoading(false), 1000)
-		document.title = `Pacientes - AdviceHealth`
+		document.title = `AdviceHealth - Pacientes`
 	}, [])
 
 	return (
