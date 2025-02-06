@@ -17,16 +17,16 @@ export function Header() {
 	}
 
 	return (
-		<header className='py-4 text-gray-700 border-b'>
+		<header className='py-4 text-text border-b'>
 			<Container>
 				<div className='flex justify-between items-center'>
 					<div>
-						<h1 className='font-bold text-xl text-gray-700 mb-1'>{title}</h1>
+						<h1 className='font-bold text-xl text-text mb-1'>{title}</h1>
 						<p className='leading-tight'>{description}</p>
 					</div>
-					<Link href='' className='hidden lg:flex flex-col gap-1 items-center'>
-						<FaUserCircle size={32} role='img' />
-						Alefer Reinert
+					<Link href='' className='hidden lg:flex flex-col gap-1 items-center text-sm group'>
+						<FaUserCircle size={32} role='img' className='transition group-hover:scale-95' />
+						John Doe
 					</Link>
 				</div>
 			</Container>

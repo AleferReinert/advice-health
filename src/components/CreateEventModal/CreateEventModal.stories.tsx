@@ -1,26 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
-import { Stats } from './Stats'
+import { CreateEventModal } from './CreateEventModal'
 
-const meta: Meta<typeof Stats> = {
-	title: 'Components/Stats',
-	component: Stats,
-	args: {
-		title: 'Custom data',
-		value: 'R$ 249,00'
-	}
+const meta: Meta<typeof CreateEventModal> = {
+	title: 'Components/CreateEventModal',
+	component: CreateEventModal
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	name: 'Stats',
+	name: 'CreateEventModal',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

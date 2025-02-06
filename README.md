@@ -8,12 +8,12 @@ Aplicação web para consultório médico.
 
 Visão gerencial do consultório para seus usuários.
 
-Deve apresentar os seguintes dados estáticos:
+Deve apresentar os seguintes dados estáticos do dia atual:
 
-- Número de agendamentos do dia
-- Número de pacientes atendidos no dia
-- Faturamento do dia
-- Agenda do dia
+- Número de agendamentos
+- Número de pacientes atendidos
+- Faturamento
+- Agenda
 - Avisos/lembretes
 
 ### Agendamento de Consultas
@@ -85,23 +85,16 @@ Funcionalidades:
 - **Next.js:** Framework React para a construção de aplicações web estáticas e dinâmicas.
 - **React:** Biblioteca JavaScript para construir interfaces de usuário.
 - **React Icons:** Conjunto de ícones populares para uso em projetos React.
+- **Redux:** Biblioteca para gerenciamento de estado previsível em aplicações JavaScript.
 - **Storybook:** Ferramenta para desenvolvimento de componentes isolados.
 - **Sonner:** Biblioteca para exibição de notificações.
 - **Tailwind CSS:** Framework de utilidades CSS para estilização rápida e eficiente.
 - **TypeScript:** Superconjunto de JavaScript que adiciona tipagem estática ao código.
 - **Vercel:** Hospedagem de projetos em Next.
 
-## Links do Projeto
+## URLs do Projeto
 
-### Produção
+Projeto online: [AdviceHealth](https://advicehealth.vercel.app)
 
-[Visualizar projeto](https://advicehealth.vercel.app)
-
-### Chromatic (Storybook)
-
-[Visualizar componentes](https://main--67620d8560ad19d1f017f00f.chromatic.com)
-
-## Atenção
-
-Proibida a cópia e utilização do código.
+Componentes e testes no Storybook: [Visualizar no Chromatic](https://main--67620d8560ad19d1f017f00f.chromatic.com)
 

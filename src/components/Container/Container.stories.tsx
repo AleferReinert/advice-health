@@ -18,7 +18,7 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		step('Render children', () => {
+		step('Children', () => {
 			const children = canvas.getByText(/html children/)
 			expect(children).toBeInTheDocument()
 		})

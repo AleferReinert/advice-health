@@ -18,17 +18,17 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		await step('Render Header', () => {
+		await step('Header', () => {
 			const Header = document.getElementsByTagName('header')[0]
 			expect(Header).toBeVisible()
 		})
 
-		await step('Render Sidebar', () => {
+		await step('Sidebar', () => {
 			const Sidebar = document.getElementsByTagName('aside')[0]
 			expect(Sidebar).toBeVisible()
 		})
 
-		await step('Render children', () => {
+		await step('Children', () => {
 			const children = canvas.getByText('Lorem ipsum dolor sit amet.')
 			expect(children).toBeVisible()
 		})

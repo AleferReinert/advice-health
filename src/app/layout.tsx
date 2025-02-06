@@ -6,7 +6,7 @@ import tailwindcolors from 'tailwindcss/colors'
 import './globals.css'
 
 const poppins = Poppins({
-	weight: ['300', '400', '500', '600', '700'],
+	weight: ['100', '200', '300', '400', '500', '600', '700'],
 	subsets: ['latin'],
 	variable: '--font-poppins'
 })
@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 				<meta property='og:image:width' content='1200' />
 				<meta property='og:image:height' content='630' />
 			</head>
-			<body className={`${poppins.className} bg-gray-100 text-gray-600 h-svh`}>
+			<body className={`${poppins.className} bg-gray-50 text-text h-svh`}>
 				<Layout>{children}</Layout>
 			</body>
 		</html>

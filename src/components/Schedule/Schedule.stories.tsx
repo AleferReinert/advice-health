@@ -1,13 +1,13 @@
-import { mockAgenda } from '@/mock/agenda.mock'
+import { mockEvents } from '@/mock/events.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
-import { Agenda } from './Agenda'
+import { Schedule } from './Schedule'
 
-const meta: Meta<typeof Agenda> = {
-	title: 'Components/Agenda',
-	component: Agenda,
+const meta: Meta<typeof Schedule> = {
+	title: 'Components/Schedule',
+	component: Schedule,
 	args: {
-		items: mockAgenda
+		events: mockEvents
 	}
 }
 
@@ -15,12 +15,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	name: 'Agenda',
+	name: 'Schedule',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

@@ -1,6 +1,6 @@
-import { DoctorProps } from '@/components/DoctorList/DoctorList'
+import { DoctorState } from '@/redux/slices/doctorsSlice'
 
-export const mockDoctors: DoctorProps[] = [
+export const mockDoctors: DoctorState[] = [
 	{
 		id: '1',
 		name: 'Dr. Ana Souza',

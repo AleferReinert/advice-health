@@ -1,13 +1,13 @@
-import { mockReminders } from '@/mock/reminders.mock'
+import { mockTasks } from '@/mock/tasks.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
-import { Reminders } from './Reminders'
+import { Tasks } from './Tasks'
 
-const meta: Meta<typeof Reminders> = {
-	title: 'Components/Reminders',
-	component: Reminders,
+const meta: Meta<typeof Tasks> = {
+	title: 'Components/Tasks',
+	component: Tasks,
 	args: {
-		reminders: mockReminders
+		tasks: mockTasks
 	}
 }
 
@@ -15,12 +15,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	name: 'Reminders',
+	name: 'Tasks',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

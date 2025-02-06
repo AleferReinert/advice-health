@@ -6,7 +6,7 @@ export const mockMenu: MenuItemProps[] = [
 		title: 'Área de trabalho',
 		icon: <AiOutlineHome role='img' />,
 		url: '/',
-		description: 'Visão gerencial do consultório.'
+		description: 'Visão gerencial do consultório para hoje.'
 	},
 	{
 		title: 'Agenda Médica',

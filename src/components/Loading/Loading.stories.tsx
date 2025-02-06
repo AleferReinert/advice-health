@@ -17,7 +17,7 @@ export const Default: Story = {
 		const loadingContainer = canvas.getByTitle('Carregando...')
 		const loadingSpinner = loadingContainer.children[0]
 
-		await step('Render spinner', () => {
+		await step('Spinner', () => {
 			expect(loadingSpinner).toHaveClass('animate-spin')
 		})
 		await step('Container full screen', () => {

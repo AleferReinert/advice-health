@@ -29,11 +29,11 @@ export function Modal({ title, children, showModal, setShowModal }: ModalProps) 
 		>
 			<div
 				onClick={e => e.stopPropagation()}
-				className='bg-white w-full h-full md:max-h-[90%] max-w-screen-sm overflow-auto md:rounded-lg'
+				className='bg-white w-full h-full md:max-h-[90%] max-w-screen-sm overflow-auto md:rounded-default'
 			>
 				<h2 className='border-b mb-2 p-4 flex justify-between font-medium text-xl'>
 					{title}
-					<button className='transition hover:text-primary' onClick={closeModal}>
+					<button className='transition hover:text-primary' onClick={closeModal} title='Fechar'>
 						<AiOutlineClose size={24} />
 					</button>
 				</h2>

@@ -1,4 +1,4 @@
-import { PaymentProps } from '@/components/Agenda/Agenda'
+import { PaymentProps } from '@/components/Schedule/Schedule'
 
 export const mockPayments: PaymentProps[] = [
 	{

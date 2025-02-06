@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { within } from '@storybook/test'
+import { expect, within } from '@storybook/test'
 import { Button } from './Button'
 
 const meta: Meta<typeof Button> = {
@@ -18,8 +18,10 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		await step('', () => {})
+		await step('Children', () => {
+			const button = canvas.getByRole('button')
+			expect(button).toHaveTextContent('Default Button')
+		})
 	}
 }
 

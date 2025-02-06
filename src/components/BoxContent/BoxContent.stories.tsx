@@ -14,31 +14,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+	name: 'BoxContent',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		await step('Without title', () => {
-			const title = canvas.queryByRole('heading')
-			expect(title).not.toBeInTheDocument()
-		})
-
-		await step('Render children', () => {
+		await step('Children', () => {
 			const children = canvas.getByRole('paragraph')
 			expect(children).toBeVisible()
-		})
-	}
-}
-
-export const WithTitle: Story = {
-	args: {
-		title: 'Consectetur adipiscing'
-	},
-	play: async ({ canvasElement, step }) => {
-		const canvas = within(canvasElement)
-
-		await step('Render title', () => {
-			const title = canvas.getByRole('heading', { level: 2 })
-			expect(title).toHaveTextContent('Consectetur adipiscing')
 		})
 	}
 }

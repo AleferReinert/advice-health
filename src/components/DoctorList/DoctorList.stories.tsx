@@ -7,7 +7,7 @@ const meta: Meta<typeof DoctorList> = {
 	title: 'Components/DoctorList',
 	component: DoctorList,
 	args: {
-		doctorList: mockDoctors
+		doctors: mockDoctors
 	}
 }
 
@@ -20,7 +20,7 @@ export const Default: Story = {
 		const canvas = within(canvasElement)
 
 		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

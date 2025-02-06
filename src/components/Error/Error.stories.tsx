@@ -14,12 +14,12 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		await step('Render default title', () => {
+		await step('Default title', () => {
 			const title = canvas.getByRole('heading', { level: 1 })
 			expect(title).toHaveTextContent('Oops!')
 		})
 
-		await step('Render default description', () => {
+		await step('Default description', () => {
 			const description = canvas.getByText('Parece que algo deu errado, tente atualizar a página ou volte mais tarde.')
 			expect(description).toBeInTheDocument()
 		})
@@ -40,17 +40,17 @@ export const Custom: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		await step('Render custom title', () => {
+		await step('Custom title', () => {
 			const title = canvas.getByRole('heading', { level: 1 })
 			expect(title).toHaveTextContent('Custom title')
 		})
 
-		await step('Render custom description', () => {
+		await step('Custom description', () => {
 			const description = canvas.getByText('Custom description.')
 			expect(description).toBeInTheDocument()
 		})
 
-		await step('Render homepagelink', () => {
+		await step('Homepagelink', () => {
 			const homepageLink = canvas.getByRole('link', { name: 'Voltar' })
 			expect(homepageLink).toBeInTheDocument()
 		})

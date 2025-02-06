@@ -1,22 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
-import { CalendarCustom } from './CalendarCustom'
+import { Calendar } from './Calendar'
 
-const meta: Meta<typeof CalendarCustom> = {
-	title: 'Components/CalendarCustom',
-	component: CalendarCustom
+const meta: Meta<typeof Calendar> = {
+	title: 'Components/Calendar',
+	component: Calendar
 }
 
 export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	name: 'CalendarCustom',
+	name: 'Calendar',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

@@ -1,18 +1,17 @@
 import { AiOutlineClose, AiOutlineEdit } from 'react-icons/ai'
 
-export function ActionButtons() {
+export interface ActionButtonsProps {
+	onEdit: () => void
+	onDelete: () => void
+}
+
+export function ActionButtons({ onEdit, onDelete }: ActionButtonsProps) {
 	return (
 		<div className='flex gap-4'>
-			{/* <input
-				type='checkbox'
-				checked={checkbox.checked}
-				className='h-5 w-5 text-teal-500 mr-2 lg:mr-4'
-				onChange={() => toggleIsCompleted(index)}
-			/> */}
-			<button title='Editar'>
-				<AiOutlineEdit size={20} className='transition hover:text-primary' />
+			<button title='Editar' onClick={onEdit}>
+				<AiOutlineEdit size={20} className='transition hover:text-yellow-600' />
 			</button>
-			<button title='Excluir'>
+			<button title='Excluir' onClick={onDelete}>
 				<AiOutlineClose size={20} className='transition hover:text-red-600' />
 			</button>
 		</div>

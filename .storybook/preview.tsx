@@ -1,8 +1,10 @@
 import type { Preview } from '@storybook/react'
 import React from 'react'
+import { Provider } from 'react-redux'
 import { Toaster } from 'sonner'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import '../src/app/globals.css'
+import { store } from '../src/redux/store.ts'
 import tailwindConfig from '../tailwind.config.ts'
 
 const tailwind = resolveConfig(tailwindConfig)
@@ -10,16 +12,18 @@ const tailwind = resolveConfig(tailwindConfig)
 const preview: Preview = {
 	decorators: [
 		story => (
-			<div className='font-poppins bg-gray-100 text-gray-600 h-svh'>
-				<Toaster
-					richColors
-					toastOptions={{
-						classNames: {
-							toast: 'text-base rounded-none'
-						}
-					}}
-				/>
-				{story()}
+			<div className='font-poppins bg-gray-100 text-text h-svh'>
+				<Provider store={store}>
+					<Toaster
+						richColors
+						toastOptions={{
+							classNames: {
+								toast: 'text-base rounded-none'
+							}
+						}}
+					/>
+					{story()}
+				</Provider>
 			</div>
 		)
 	],

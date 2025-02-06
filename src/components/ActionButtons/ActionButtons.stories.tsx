@@ -16,7 +16,7 @@ export const Default: Story = {
 		const canvas = within(canvasElement)
 
 		// Todo
-		await step('', () => {})
+		// await step('', () => {})
 	}
 }
 

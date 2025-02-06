@@ -1,5 +1,8 @@
+'use client'
 import { mockMenu } from '@/mock/menu.mock'
+import { store } from '@/redux/store'
 import { ReactNode } from 'react'
+import { Provider } from 'react-redux'
 import { Toaster } from 'sonner'
 import { Container } from '../Container/Container'
 import { Header } from '../Header/Header'
@@ -11,12 +14,14 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
 	return (
-		<>
+		<Provider store={store}>
 			<Toaster
 				richColors
+				visibleToasts={1}
 				toastOptions={{
 					classNames: {
-						toast: 'text-base rounded-none'
+						toast: 'text-base rounded-default p-5',
+						closeButton: 'relative transform-none order-last ml-auto [&>svg]:size-6'
 					}
 				}}
 			/>
@@ -29,6 +34,6 @@ export function Layout({ children }: LayoutProps) {
 					</Container>
 				</div>
 			</div>
-		</>
+		</Provider>
 	)
 }

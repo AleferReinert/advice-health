@@ -1,52 +1,58 @@
 'use client'
-import { Agenda, AppointmentProps } from '@/components/Agenda/Agenda'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
-import { CalendarCustom } from '@/components/CalendarCustom/CalendarCustom'
-import { ReminderProps, Reminders } from '@/components/Reminders/Reminders'
-import { Stats } from '@/components/Stats/Stats'
-import { mockAgenda } from '@/mock/agenda.mock'
-import { mockReminders } from '@/mock/reminders.mock'
+import { Calendar } from '@/components/Calendar/Calendar'
+import { Heading } from '@/components/Heading/Heading'
+import { Schedule } from '@/components/Schedule/Schedule'
+import { Section } from '@/components/Section/Section'
+import { Tasks } from '@/components/Tasks/Tasks'
+import { filterEventsByDate, setAttendedPatients, setTotalAmountReceived } from '@/redux/slices/scheduleSlice'
+import { RootState } from '@/redux/store'
 import { formatPrice } from '@/utils/formatPrice'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Home() {
-	const [selectedDate, setSelectedDate] = useState<Date>(new Date())
-	const [agenda, setAgenda] = useState<AppointmentProps[]>([])
-	const [loading, setLoading] = useState(true)
-	const [reminders, setReminders] = useState<ReminderProps[]>([])
-	const [revenue, setRevenue] = useState<number>(0)
-	const totalPatientsToday = agenda.length
-	const patientsAttendedToday = mockAgenda.filter(
-		item => item.date.toDateString() === selectedDate.toDateString() && item.attended === true
-	).length
+	const { selectedDate, attendedPatients, totalAmountReceived, selectedDateEvents } = useSelector(
+		(state: RootState) => state.schedule
+	)
+	const { selectedDateTasks } = useSelector((state: RootState) => state.tasks)
+	const dispatch = useDispatch()
 
 	useEffect(() => {
-		const filteredAgenda = mockAgenda.filter(item => item.date.toDateString() === selectedDate.toDateString())
-		const filteredReminders = mockReminders.filter(item => item.date.toDateString() === selectedDate.toDateString())
-		setAgenda(filteredAgenda)
-		setReminders(filteredReminders)
-
-		// Sum the price of all completed appointments on the selected date
-		const totalRevenue = filteredAgenda.filter(item => item.attended).reduce((sum, item) => sum + (item.price || 0), 0)
-		setRevenue(totalRevenue)
-		setLoading(false)
-	}, [selectedDate])
+		dispatch(filterEventsByDate(selectedDate))
+		dispatch(setAttendedPatients(selectedDate))
+		dispatch(setTotalAmountReceived())
+	}, [selectedDate, dispatch])
 
 	return (
 		<div className='flex flex-col gap-4'>
 			<div className='grid gap-4 grid-cols-1 md:grid-cols-[3fr_2fr] xl:grid-cols-[1fr_2fr]'>
-				<CalendarCustom className='min-h-full' selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+				<Calendar />
 
-				<div className='grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-[1fr_1fr_auto]'>
-					<Stats title='Agendamentos' value={totalPatientsToday} loading={loading} />
-					<Stats title='Atendidos' value={patientsAttendedToday} loading={loading} />
-					<Stats title='Faturamento' value={formatPrice(revenue)} loading={loading} />
+				<div className='grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-[auto_auto]'>
+					<BoxContent>
+						<Heading theme='box' align='center'>
+							Atendidos
+						</Heading>
+						<p className='statsValue'>{attendedPatients}</p>
+					</BoxContent>
+
+					<BoxContent>
+						<Heading theme='box' align='center'>
+							Faturamento
+						</Heading>
+						<p className='statsValue'>{formatPrice(totalAmountReceived)}</p>
+					</BoxContent>
 				</div>
 			</div>
-			<BoxContent title='Agenda' withoutChildrenPadding loading={loading}>
-				<Agenda items={agenda} showDoctor showActionButtons />
-			</BoxContent>
-			<Reminders reminders={reminders} loading={loading} />
+
+			<Section title={`Agenda (${selectedDateEvents.length})`}>
+				<Schedule events={selectedDateEvents} showDoctor showActionButtons />
+			</Section>
+
+			<Section title={`Tarefas (${selectedDateTasks.length})`}>
+				<Tasks />
+			</Section>
 		</div>
 	)
 }
