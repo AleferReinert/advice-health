@@ -17,8 +17,8 @@ export interface TasksState {
 
 const todayTasks = mockTasks.filter(task => task.date === new Date().toDateString())
 const initialState: TasksState = {
-	tasks: [],
-	selectedDateTasks: []
+	tasks: mockTasks,
+	selectedDateTasks: todayTasks
 }
 
 export const TasksSlice = createSlice({

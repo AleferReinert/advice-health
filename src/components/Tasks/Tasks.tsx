@@ -1,6 +1,6 @@
-import { editTask, removeTask } from '@/redux/slices/tasksSlice'
+import { editTask, filterTasksByDate, removeTask } from '@/redux/slices/tasksSlice'
 import { RootState } from '@/redux/store'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { AiOutlineCheckCircle, AiOutlineClockCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
@@ -9,11 +9,9 @@ export function Tasks() {
 	const { selectedDate } = useSelector((state: RootState) => state.schedule)
 	const { selectedDateTasks } = useSelector((state: RootState) => state.tasks)
 	const dispatch = useDispatch()
-	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		// dispatch(filterTasksByDate(selectedDate))
-		// setLoading(false)
+		dispatch(filterTasksByDate(selectedDate))
 	}, [dispatch, selectedDate])
 
 	return selectedDateTasks?.length > 0 ? (
