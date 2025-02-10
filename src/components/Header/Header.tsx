@@ -21,8 +21,8 @@ export function Header() {
 			<Container>
 				<div className='flex justify-between items-center'>
 					<div>
-						<h1 className='font-bold text-xl text-text mb-1'>{title}</h1>
-						<p className='leading-tight'>{description}</p>
+						<h1 className='font-semibold text-2xl text-text mb-1'>{title}</h1>
+						<p className='leading-tight font-light'>{description}</p>
 					</div>
 					<Link href='' className='hidden lg:flex flex-col gap-1 items-center text-sm group'>
 						<FaUserCircle size={32} role='img' className='transition group-hover:scale-95' />

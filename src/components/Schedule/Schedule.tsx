@@ -1,8 +1,6 @@
-import { selectDoctorById } from '@/redux/slices/doctorsSlice'
-import { editEvent, removeEvent, ScheduleState } from '@/redux/slices/scheduleSlice'
-import { RootState } from '@/redux/store'
+import { editEvent, EventState, removeEvent } from '@/app/features/schedule/scheduleSlice'
+import { RootState } from '@/app/store'
 import { formatPrice } from '@/utils/formatPrice'
-import { getPatientById } from '@/utils/getPatientById'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
@@ -26,42 +24,43 @@ export interface PaymentProps {
 	cardBrand?: 'visa' | 'mastercard' | 'amex' | 'diners' | 'elo' | 'hiper'
 }
 
-interface ScheduleProps extends Pick<ScheduleState, 'events'> {
+interface ScheduleProps {
 	showDoctor?: boolean
 	showData?: boolean
 	showActionButtons?: boolean
+	events: EventState[]
 }
 
 export function Schedule({ events, showDoctor = false, showData, showActionButtons }: ScheduleProps) {
-	const showDoctorStyles = showDoctor ? '' : 'hidden'
-	const showDataStyles = showData ? '' : 'hidden'
-	const showActionButtonsStyles = showActionButtons ? '' : 'hidden'
+	const { patients } = useSelector((state: RootState) => state.patients)
+	const { doctors } = useSelector((state: RootState) => state.doctors)
 	const dispatch = useDispatch()
-	const { selectedDoctorId } = useSelector((state: RootState) => state.schedule)
-	const currentDoctor = useSelector(selectDoctorById(selectedDoctorId))
+	const doctorStyles = showDoctor ? '' : 'hidden'
+	const dataStyles = showData ? '' : 'hidden'
+	const actionButtonsStyles = showActionButtons ? '' : 'hidden'
 
 	return events.length > 0 ? (
 		<div className='overflow-x-auto'>
 			<table>
 				<thead>
 					<tr>
-						<th className={`${showDataStyles} w-0`}>Data</th>
+						<th className={`${dataStyles} w-0`}>Data</th>
 						<th className='w-0'>Horário</th>
-						<th className={showDoctorStyles}>Médico</th>
+						<th className={doctorStyles}>Médico</th>
 						<th>Paciente</th>
-						<th>Preço</th>
+						<th>Valor</th>
 						<th>Atendido</th>
-						<th className={showActionButtonsStyles}>Ações</th>
+						<th className={actionButtonsStyles}>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
-					{events.map((item, index) => {
-						const date = format(item.date, 'dd/MM/yy', { locale: ptBR })
-						const hour = format(item.date, 'HH:mm', { locale: ptBR }) + 'h'
-						const doctorName = currentDoctor!.name
-						const patientName = getPatientById(item.patientId)?.fullName
-						const price = formatPrice(item.price)
-						const statusIcon = item.attended ? (
+					{events.map((event, index) => {
+						const date = format(event.date, 'dd/MM/yy', { locale: ptBR })
+						const hour = format(event.date, 'HH:mm', { locale: ptBR }) + 'h'
+						const doctorName = doctors.find(doctor => doctor.id === event.doctorId)?.name
+						const patientName = patients.find(patient => patient.id === event.patientId)?.fullName
+						const price = formatPrice(event.price)
+						const statusIcon = event.attended ? (
 							<AiOutlineCheckCircle className='text-primary' title='Atendido' />
 						) : (
 							<AiOutlineCloseCircle className='text-red-600' title='Não atendido' />
@@ -69,16 +68,16 @@ export function Schedule({ events, showDoctor = false, showData, showActionButto
 
 						return (
 							<tr key={index}>
-								<td className={showDataStyles}>{date}</td>
+								<td className={dataStyles}>{date}</td>
 								<td>{hour}</td>
-								<td className={showDoctorStyles + ' font-normal'}>{doctorName}</td>
+								<td className={doctorStyles + ' font-normal'}>{doctorName}</td>
 								<td className='font-normal'>{patientName}</td>
 								<td>{price}</td>
 								<td className='w-0 [&_svg]:mx-auto [&_svg]:size-5'>{statusIcon}</td>
-								<td className={`${showActionButtonsStyles} w-0`}>
+								<td className={`${actionButtonsStyles} w-0`}>
 									<ActionButtons
-										onEdit={() => dispatch(editEvent(item.id))}
-										onDelete={() => dispatch(removeEvent(item.id))}
+										onEdit={() => dispatch(editEvent(event.id))}
+										onDelete={() => dispatch(removeEvent(event.id))}
 									/>
 								</td>
 							</tr>

@@ -1,7 +1,7 @@
 'use client'
-import { DoctorsState } from '@/redux/slices/doctorsSlice'
-import { filterEventsByDateAndDoctor } from '@/redux/slices/scheduleSlice'
-import { RootState } from '@/redux/store'
+import { DoctorsState } from '@/app/features/doctors/doctorsSlice'
+import { filterEventsByDoctorOnSelectedDate } from '@/app/features/schedule/scheduleSlice'
+import { RootState } from '@/app/store'
 import Image from 'next/image'
 import { AiFillCaretDown } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,18 +9,18 @@ import { useDispatch, useSelector } from 'react-redux'
 interface DoctorListProps extends DoctorsState {}
 
 export const DoctorList = ({ doctors }: DoctorListProps) => {
-	const { selectedDoctorId } = useSelector((state: RootState) => state.schedule)
+	const { selectedDoctor } = useSelector((state: RootState) => state.schedule)
 	const dispatch = useDispatch()
 
 	return (
 		<ul className='w-full mt-4'>
 			{doctors.map((doctor, index) => {
-				const active = selectedDoctorId === doctor.id
+				const active = selectedDoctor.id === doctor.id
 
 				return (
 					<li
 						key={index}
-						onClick={() => dispatch(filterEventsByDateAndDoctor(doctor.id))}
+						onClick={() => dispatch(filterEventsByDoctorOnSelectedDate(doctor.id))}
 						className={`
 							${active ? 'border-primary bg-gray-50' : 'border-transparent opacity-90'} 
 							border-l-2 cursor-pointer flex gap-8 items-center justify-between py-2 pl-[.875rem] pr-4 transition-all

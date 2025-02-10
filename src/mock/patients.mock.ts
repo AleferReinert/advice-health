@@ -1,4 +1,4 @@
-import { PatientState } from '@/redux/slices/patientsSlice'
+import { PatientState } from '@/app/features/patients/patientsSlice'
 
 export const mockPatients: PatientState[] = [
 	{

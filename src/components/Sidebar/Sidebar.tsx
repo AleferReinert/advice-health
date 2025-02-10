@@ -1,10 +1,8 @@
 'use client'
-import { RootState } from '@/redux/store'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi'
-import { useSelector } from 'react-redux'
 
 export interface MenuItemProps {
 	title: string
@@ -22,7 +20,6 @@ export function Sidebar({ menu }: SidebarProps) {
 	const [fullSidebar, setFullSidebar] = useState(false)
 	const iconSize = 32
 	const baseStyles = 'transition hover:bg-teal-700 w-full flex [&_svg]:m-4'
-	const { currentUser } = useSelector((state: RootState) => state.user)
 
 	return (
 		<aside

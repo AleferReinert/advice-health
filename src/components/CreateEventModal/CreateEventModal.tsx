@@ -1,5 +1,5 @@
-import { addEvent } from '@/redux/slices/scheduleSlice'
-import { RootState } from '@/redux/store'
+import { addEvent } from '@/app/features/schedule/scheduleSlice'
+import { RootState } from '@/app/store'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../Button/Button'

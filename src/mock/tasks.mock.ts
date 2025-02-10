@@ -1,4 +1,4 @@
-import { TaskState } from '@/redux/slices/tasksSlice'
+import { TaskState } from '@/app/features/tasks/tasksSlice'
 import { getDateOffset } from './events.mock'
 
 // Tasks of last 30 days and next 30 days, without sundays and saturdays

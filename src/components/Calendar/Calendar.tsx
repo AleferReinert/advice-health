@@ -1,5 +1,5 @@
-import { setSelectedDate } from '@/redux/slices/scheduleSlice'
-import { RootState } from '@/redux/store'
+import { setSelectedDate } from '@/app/features/schedule/scheduleSlice'
+import { RootState } from '@/app/store'
 import ReactCalendar from 'react-calendar'
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'

@@ -1,28 +1,24 @@
 'use client'
+import {
+	selectAttendedPatientsOnSelectedDate,
+	selectEventsBySelectedDate,
+	selectTotalAmountReceivedOnSelectedDate
+} from '@/app/features/schedule/scheduleSlice'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Calendar } from '@/components/Calendar/Calendar'
 import { Heading } from '@/components/Heading/Heading'
 import { Schedule } from '@/components/Schedule/Schedule'
 import { Section } from '@/components/Section/Section'
 import { Tasks } from '@/components/Tasks/Tasks'
-import { filterEventsByDate, setAttendedPatients, setTotalAmountReceived } from '@/redux/slices/scheduleSlice'
-import { RootState } from '@/redux/store'
 import { formatPrice } from '@/utils/formatPrice'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { selectTasksBySelectedDate } from './features/tasks/tasksSlice'
 
 export default function Home() {
-	const { selectedDate, attendedPatients, totalAmountReceived, selectedDateEvents } = useSelector(
-		(state: RootState) => state.schedule
-	)
-	const { selectedDateTasks } = useSelector((state: RootState) => state.tasks)
-	const dispatch = useDispatch()
-
-	useEffect(() => {
-		dispatch(filterEventsByDate(selectedDate))
-		dispatch(setAttendedPatients(selectedDate))
-		dispatch(setTotalAmountReceived())
-	}, [selectedDate, dispatch])
+	const eventsBySelectedDate = useSelector(selectEventsBySelectedDate)
+	const tasksBySelectedDate = useSelector(selectTasksBySelectedDate)
+	const attendedPatients = useSelector(selectAttendedPatientsOnSelectedDate)
+	const totalAmountReceived = useSelector(selectTotalAmountReceivedOnSelectedDate)
 
 	return (
 		<div className='flex flex-col gap-4'>
@@ -46,11 +42,11 @@ export default function Home() {
 				</div>
 			</div>
 
-			<Section title={`Agenda (${selectedDateEvents.length})`}>
-				<Schedule events={selectedDateEvents} showDoctor showActionButtons />
+			<Section title={`Agenda (${eventsBySelectedDate.length})`}>
+				<Schedule events={eventsBySelectedDate} showDoctor showActionButtons />
 			</Section>
 
-			<Section title={`Tarefas (${selectedDateTasks.length})`}>
+			<Section title={`Tarefas (${tasksBySelectedDate.length})`}>
 				<Tasks />
 			</Section>
 		</div>

@@ -1,6 +1,5 @@
 import { mockDoctors } from '@/mock/doctors.mock'
 import { createSlice } from '@reduxjs/toolkit'
-import { RootState } from '../store'
 
 export interface DoctorState {
 	id: string
@@ -27,9 +26,5 @@ export const DoctorsSlice = createSlice({
 		}
 	}
 })
-
-export const selectDoctorById = (doctorId: string) => (state: RootState) => {
-	return state.doctors.doctors.find(doctor => doctor.id === doctorId)
-}
 
 export const { addDoctor } = DoctorsSlice.actions

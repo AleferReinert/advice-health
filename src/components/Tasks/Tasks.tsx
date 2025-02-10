@@ -1,20 +1,13 @@
-import { editTask, filterTasksByDate, removeTask } from '@/redux/slices/tasksSlice'
-import { RootState } from '@/redux/store'
-import { useEffect } from 'react'
+import { editTask, removeTask, selectTasksBySelectedDate } from '@/app/features/tasks/tasksSlice'
 import { AiOutlineCheckCircle, AiOutlineClockCircle, AiOutlineCloseCircle } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export function Tasks() {
-	const { selectedDate } = useSelector((state: RootState) => state.schedule)
-	const { selectedDateTasks } = useSelector((state: RootState) => state.tasks)
+	const tasksBySelectedDate = useSelector(selectTasksBySelectedDate)
 	const dispatch = useDispatch()
 
-	useEffect(() => {
-		dispatch(filterTasksByDate(selectedDate))
-	}, [dispatch, selectedDate])
-
-	return selectedDateTasks?.length > 0 ? (
+	return tasksBySelectedDate.length > 0 ? (
 		<div className='overflow-x-auto'>
 			<table>
 				<thead>
@@ -26,7 +19,7 @@ export function Tasks() {
 					</tr>
 				</thead>
 				<tbody>
-					{selectedDateTasks.map((task, index) => {
+					{tasksBySelectedDate.map((task, index) => {
 						const statusStyles = task.isCompleted
 							? 'text-primary'
 							: task.status === 'Atrasada'

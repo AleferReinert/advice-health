@@ -6,19 +6,19 @@ export const mockMenu: MenuItemProps[] = [
 		title: 'Área de trabalho',
 		icon: <AiOutlineHome role='img' />,
 		url: '/',
-		description: 'Visão gerencial do consultório para hoje.'
+		description: 'O que você tem para hoje.'
 	},
 	{
-		title: 'Agenda Médica',
+		title: 'Agenda médica',
 		icon: <AiOutlineCalendar role='img' />,
 		url: '/medicos',
-		description: 'Gestão dos agendamentos e disponibilidade dos médicos no consultório.'
+		description: 'Compromissos de cada profissional.'
 	},
 	{
-		title: 'Consulta de Pacientes',
+		title: 'Consulta de pacientes',
 		icon: <AiOutlineTeam role='img' />,
 		url: '/pacientes',
-		description: 'Visualização e edição de dados de pacientes, agendamentos e cobranças.'
+		description: 'Gestão de pacientes.'
 	},
 	{
 		title: 'Sair',

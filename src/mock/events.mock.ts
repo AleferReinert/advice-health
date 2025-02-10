@@ -1,4 +1,4 @@
-import { EventState } from '@/redux/slices/scheduleSlice'
+import { EventState } from '@/app/features/schedule/scheduleSlice'
 
 export const getDateOffset = (offset: number) => {
 	const today = new Date()

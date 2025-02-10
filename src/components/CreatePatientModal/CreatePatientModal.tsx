@@ -1,5 +1,5 @@
-import { addPatient } from '@/redux/slices/patientsSlice'
-import { RootState } from '@/redux/store'
+import { addPatient } from '@/app/features/patients/patientsSlice'
+import { RootState } from '@/app/store'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Toaster } from 'sonner'
 import resolveConfig from 'tailwindcss/resolveConfig'
 import '../src/app/globals.css'
-import { store } from '../src/redux/store.ts'
+import { store } from '../src/app/store.ts'
 import tailwindConfig from '../tailwind.config.ts'
 
 const tailwind = resolveConfig(tailwindConfig)
