@@ -1,19 +1,17 @@
-import { RootState } from '@/app/store'
+import { filterEventsByPatientName } from '@/app/features/schedule/scheduleSlice'
+import { AppDispatch } from '@/app/store'
 import { ChangeEvent, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export function Search() {
-	const [query, setQuery] = useState<string>('')
-	const { patients } = useSelector((state: RootState) => state.patients)
-	const dispatch = useDispatch()
-
-	const filteredPatientsByQuery = patients.filter(patient => patient.fullName.toLowerCase().includes(query))
+	const [searchTerm, setSearchTerm] = useState('')
+	const dispatch: AppDispatch = useDispatch()
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
-		setQuery(value)
-		// console.log(filteredPatientsByQuery)
+		setSearchTerm(value)
+		dispatch(filterEventsByPatientName(value))
 	}
 
 	return (
@@ -23,7 +21,7 @@ export function Search() {
 					type='text'
 					placeholder='Pesquisar paciente...'
 					className='placeholder:text-inherit bg-transparent w-full py-2 text-gray-500 focus:text-text'
-					value={query}
+					value={searchTerm}
 					onChange={e => handleSearch(e)}
 				/>
 				<button className='transition text-gray-500 group-focus-within:text-text hover:text-primary'>

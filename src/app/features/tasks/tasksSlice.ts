@@ -19,7 +19,7 @@ const initialState: TasksState = {
 	tasks: mockTasks
 }
 
-export const TasksSlice = createSlice({
+export const tasksSlice = createSlice({
 	name: 'tasks',
 	initialState,
 	reducers: {
@@ -39,13 +39,12 @@ export const TasksSlice = createSlice({
 				)
 			) {
 				state.tasks = state.tasks.filter(task => task.id !== action.payload)
-				// state.selectedDateTasks = state.selectedDateTasks.filter(task => task.id !== action.payload)
 			}
 		}
 	}
 })
 
-export const { addTask, editTask, removeTask } = TasksSlice.actions
+export const { addTask, editTask, removeTask } = tasksSlice.actions
 
 const selectTasks = (state: RootState) => state.tasks
 const selectSelectedDate = (state: RootState) => state.schedule.selectedDate

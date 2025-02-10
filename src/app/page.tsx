@@ -42,7 +42,7 @@ export default function Home() {
 				</div>
 			</div>
 
-			<Section title={`Agenda (${eventsBySelectedDate.length})`}>
+			<Section title={`Consultas (${eventsBySelectedDate.length})`}>
 				<Schedule events={eventsBySelectedDate} showDoctor showActionButtons />
 			</Section>
 

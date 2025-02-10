@@ -1,5 +1,5 @@
 'use client'
-import { filterEventsByDoctorOnSelectedDate } from '@/app/features/schedule/scheduleSlice'
+import { selectEventsByDoctorOnSelectedDate } from '@/app/features/schedule/scheduleSlice'
 import { RootState } from '@/app/store'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Button } from '@/components/Button/Button'
@@ -15,22 +15,18 @@ import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export default function DoctorsPage() {
-	const { filteredEvents, selectedDate, selectedDoctor } = useSelector((state: RootState) => state.schedule)
+	const { selectedDate, selectedDoctor } = useSelector((state: RootState) => state.schedule)
 	const { patients } = useSelector((state: RootState) => state.patients)
 	const { doctors } = useSelector((state: RootState) => state.doctors)
 	const [createAppointmentModal, setCreateAppointmentModal] = useState(false)
-	const dispatch = useDispatch()
+	const eventsByDoctorOnSelectedDate = useSelector(selectEventsByDoctorOnSelectedDate)
 
 	useEffect(() => {
 		document.title = `AdviceHealth - ${mockMenu[1].title}`
 	}, [])
-
-	useEffect(() => {
-		dispatch(filterEventsByDoctorOnSelectedDate(selectedDoctor))
-	}, [dispatch, selectedDate, selectedDoctor])
 
 	return (
 		<>
@@ -50,8 +46,8 @@ export default function DoctorsPage() {
 					</Button>
 				</div>
 
-				<Section title={`${selectedDoctor.name} - ${format(selectedDate, 'dd/MM/yy', { locale: ptBR })}`}>
-					<Schedule events={filteredEvents} showActionButtons />
+				<Section title={`Consultas - ${selectedDoctor.name} (${format(selectedDate, 'dd/MM/yy', { locale: ptBR })})`}>
+					<Schedule events={eventsByDoctorOnSelectedDate} showActionButtons />
 				</Section>
 			</div>
 

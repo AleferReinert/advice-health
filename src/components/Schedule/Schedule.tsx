@@ -87,6 +87,6 @@ export function Schedule({ events, showDoctor = false, showData, showActionButto
 			</table>
 		</div>
 	) : (
-		<p className='py-4'>Nenhum evento para este dia.</p>
+		<p className='py-4'>Nenhuma consulta para este dia.</p>
 	)
 }

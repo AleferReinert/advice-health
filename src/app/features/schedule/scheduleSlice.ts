@@ -1,4 +1,4 @@
-import { RootState } from '@/app/store'
+import { AppDispatch, RootState } from '@/app/store'
 import { mockDoctors } from '@/mock/doctors.mock'
 import { mockEvents } from '@/mock/events.mock'
 import { createSelector, createSlice } from '@reduxjs/toolkit'
@@ -17,17 +17,17 @@ export interface ScheduleState {
 	selectedDate: string
 	selectedDoctor: DoctorState
 	events: EventState[]
-	filteredEvents: EventState[]
+	filteredEventsBySearchTerm: EventState[]
 }
 
 const initialState: ScheduleState = {
 	selectedDate: new Date().toDateString(),
 	selectedDoctor: mockDoctors[0],
 	events: mockEvents,
-	filteredEvents: mockEvents.filter(event => event.date === new Date().toDateString())
+	filteredEventsBySearchTerm: mockEvents
 }
 
-export const ScheduleSlice = createSlice({
+export const scheduleSlice = createSlice({
 	name: 'schedule',
 	initialState,
 	reducers: {
@@ -42,25 +42,25 @@ export const ScheduleSlice = createSlice({
 			console.log('todo: removeEvent ')
 			alert(`todo: removeEvent ${action.payload}`)
 		},
-		filterEventsByDoctorOnSelectedDate: (state, action) => {
-			state.filteredEvents = state.events.filter(
-				event => event.date === state.selectedDate && event.doctorId === action.payload
-			)
-		},
-		// filterEventsByPatientName: (state, action) => {
-		// 	state.filteredEvents = state.events.filter(event => {
-		// 		const patientName = mockPatients.find(patient => patient.id === action.payload)?.fullName // TODO PRECISA ARRUMAR AQUI
-		// 		return patientName?.toLowerCase().includes(action.payload.toLowerCase())
-		// 	})
-		// },
 		setSelectedDate: (state, action) => {
 			state.selectedDate = action.payload
+		},
+		setSelectedDoctor: (state, action) => {
+			state.selectedDoctor = action.payload
+		},
+		setFilteredEvents: (state, action) => {
+			state.filteredEventsBySearchTerm = action.payload
 		}
 	}
 })
 
-export const { filterEventsByDoctorOnSelectedDate, addEvent, editEvent, removeEvent, setSelectedDate } =
-	ScheduleSlice.actions
+const selectEvents = (state: RootState) => state.schedule.events
+const selectSelectedDate = (state: RootState) => state.schedule.selectedDate
+const selectPatients = (state: RootState) => state.patients.patients
+
+export const selectEventsBySelectedDate = createSelector([selectEvents, selectSelectedDate], (events, selectedDate) => {
+	return events.filter(event => event.date === selectedDate)
+})
 
 export const selectAttendedPatientsOnSelectedDate = (state: RootState) =>
 	state.schedule.events.filter(item => item.attended && item.date === state.schedule.selectedDate).length
@@ -73,9 +73,22 @@ export const selectTotalAmountReceivedOnSelectedDate = (state: RootState) =>
 		.filter(item => item.attended && item.date === state.schedule.selectedDate)
 		.reduce((sum, item) => sum + (item.price || 0), 0)
 
-const selectEvents = (state: RootState) => state.schedule.events
-const selectSelectedDate = (state: RootState) => state.schedule.selectedDate
+export const selectEventsByDoctorOnSelectedDate = (state: RootState) =>
+	state.schedule.events.filter(
+		event => event.date === state.schedule.selectedDate && event.doctorId === state.schedule.selectedDoctor.id
+	)
 
-export const selectEventsBySelectedDate = createSelector([selectEvents, selectSelectedDate], (events, selectedDate) => {
-	return events.filter(event => event.date === selectedDate)
-})
+export const filterEventsByPatientName = (searchTerm: string) => {
+	return (dispatch: AppDispatch, getState: () => RootState) => {
+		const state = getState()
+		const patients = selectPatients(state)
+		const filteredEventsBySearchTerm = state.schedule.events.filter(event => {
+			const patient = patients.find(patient => patient.id === event.patientId)
+			return patient?.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+		})
+		dispatch(setFilteredEvents(filteredEventsBySearchTerm))
+	}
+}
+
+export const { addEvent, editEvent, removeEvent, setSelectedDate, setSelectedDoctor, setFilteredEvents } =
+	scheduleSlice.actions

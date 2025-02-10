@@ -1,6 +1,6 @@
 'use client'
 import { DoctorsState } from '@/app/features/doctors/doctorsSlice'
-import { filterEventsByDoctorOnSelectedDate } from '@/app/features/schedule/scheduleSlice'
+import { setSelectedDoctor } from '@/app/features/schedule/scheduleSlice'
 import { RootState } from '@/app/store'
 import Image from 'next/image'
 import { AiFillCaretDown } from 'react-icons/ai'
@@ -20,7 +20,7 @@ export const DoctorList = ({ doctors }: DoctorListProps) => {
 				return (
 					<li
 						key={index}
-						onClick={() => dispatch(filterEventsByDoctorOnSelectedDate(doctor.id))}
+						onClick={() => dispatch(setSelectedDoctor(doctor))}
 						className={`
 							${active ? 'border-primary bg-gray-50' : 'border-transparent opacity-90'} 
 							border-l-2 cursor-pointer flex gap-8 items-center justify-between py-2 pl-[.875rem] pr-4 transition-all

@@ -12,7 +12,7 @@ import { RootState } from '../store'
 
 export default function Patients() {
 	const [createPatientModal, setCreatePatientModal] = useState(false)
-	const { events } = useSelector((state: RootState) => state.schedule)
+	const { filteredEventsBySearchTerm } = useSelector((state: RootState) => state.schedule)
 
 	useEffect(() => {
 		document.title = `AdviceHealth - Pacientes`
@@ -29,7 +29,7 @@ export default function Patients() {
 			</div>
 
 			<Section title='Pacientes'>
-				<Schedule events={events} showData />
+				<Schedule events={filteredEventsBySearchTerm} showData />
 			</Section>
 
 			<Modal title='Novo paciente' showModal={createPatientModal} setShowModal={setCreatePatientModal}>

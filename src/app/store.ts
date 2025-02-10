@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { DoctorsSlice } from './features/doctors/doctorsSlice'
+import { doctorsSlice } from './features/doctors/doctorsSlice'
 import { patientsSlice } from './features/patients/patientsSlice'
-import { ScheduleSlice } from './features/schedule/scheduleSlice'
-import { TasksSlice } from './features/tasks/tasksSlice'
+import { scheduleSlice } from './features/schedule/scheduleSlice'
+import { tasksSlice } from './features/tasks/tasksSlice'
 
 export const store = configureStore({
 	reducer: {
 		patients: patientsSlice.reducer,
-		schedule: ScheduleSlice.reducer,
-		tasks: TasksSlice.reducer,
-		doctors: DoctorsSlice.reducer
+		schedule: scheduleSlice.reducer,
+		tasks: tasksSlice.reducer,
+		doctors: doctorsSlice.reducer
 	}
 	// middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
 })

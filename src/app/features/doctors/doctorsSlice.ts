@@ -17,7 +17,7 @@ const initialState: DoctorsState = {
 	doctors: mockDoctors
 }
 
-export const DoctorsSlice = createSlice({
+export const doctorsSlice = createSlice({
 	name: 'doctors',
 	initialState,
 	reducers: {
@@ -27,4 +27,4 @@ export const DoctorsSlice = createSlice({
 	}
 })
 
-export const { addDoctor } = DoctorsSlice.actions
+export const { addDoctor } = doctorsSlice.actions
