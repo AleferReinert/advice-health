@@ -48,7 +48,7 @@ export const scheduleSlice = createSlice({
 		setSelectedDoctor: (state, action) => {
 			state.selectedDoctor = action.payload
 		},
-		setFilteredEvents: (state, action) => {
+		setFilteredEventsBySearchTerm: (state, action) => {
 			state.filteredEventsBySearchTerm = action.payload
 		}
 	}
@@ -56,27 +56,37 @@ export const scheduleSlice = createSlice({
 
 const selectEvents = (state: RootState) => state.schedule.events
 const selectSelectedDate = (state: RootState) => state.schedule.selectedDate
+const selectSelectedDoctor = (state: RootState) => state.schedule.selectedDoctor
 const selectPatients = (state: RootState) => state.patients.patients
 
 export const selectEventsBySelectedDate = createSelector([selectEvents, selectSelectedDate], (events, selectedDate) => {
 	return events.filter(event => event.date === selectedDate)
 })
 
-export const selectAttendedPatientsOnSelectedDate = (state: RootState) =>
-	state.schedule.events.filter(item => item.attended && item.date === state.schedule.selectedDate).length
+export const selectAttendedPatientsOnSelectedDate = (state: RootState) => {
+	return state.schedule.events.filter(item => item.attended && item.date === state.schedule.selectedDate).length
+}
 
-export const selectUnattendedPatientsOnSelectedDate = (state: RootState) =>
-	state.schedule.events.filter(item => item.attended && item.date === state.schedule.selectedDate).length
+export const selectUnattendedPatientsOnSelectedDate = (state: RootState) => {
+	return state.schedule.events.filter(item => item.attended && item.date === state.schedule.selectedDate).length
+}
 
-export const selectTotalAmountReceivedOnSelectedDate = (state: RootState) =>
-	state.schedule.events
+export const selectTotalAmountReceivedOnSelectedDate = (state: RootState) => {
+	return state.schedule.events
 		.filter(item => item.attended && item.date === state.schedule.selectedDate)
 		.reduce((sum, item) => sum + (item.price || 0), 0)
+}
 
-export const selectEventsByDoctorOnSelectedDate = (state: RootState) =>
-	state.schedule.events.filter(
-		event => event.date === state.schedule.selectedDate && event.doctorId === state.schedule.selectedDoctor.id
-	)
+export const selectEventsByDoctorId = createSelector([selectEvents, selectSelectedDoctor], (events, selectedDoctor) => {
+	return events.filter(event => event.doctorId === selectedDoctor.id)
+})
+
+export const selectEventsByDoctorIdOnSelectedDate = createSelector(
+	[selectEvents, selectSelectedDate, selectSelectedDoctor],
+	(events, selectedDate, selectedDoctor) => {
+		return events.filter(event => event.doctorId === selectedDoctor.id && event.date === selectedDate)
+	}
+)
 
 export const filterEventsByPatientName = (searchTerm: string) => {
 	return (dispatch: AppDispatch, getState: () => RootState) => {
@@ -86,9 +96,9 @@ export const filterEventsByPatientName = (searchTerm: string) => {
 			const patient = patients.find(patient => patient.id === event.patientId)
 			return patient?.fullName.toLowerCase().includes(searchTerm.toLowerCase())
 		})
-		dispatch(setFilteredEvents(filteredEventsBySearchTerm))
+		dispatch(setFilteredEventsBySearchTerm(filteredEventsBySearchTerm))
 	}
 }
 
-export const { addEvent, editEvent, removeEvent, setSelectedDate, setSelectedDoctor, setFilteredEvents } =
+export const { addEvent, editEvent, removeEvent, setSelectedDate, setSelectedDoctor, setFilteredEventsBySearchTerm } =
 	scheduleSlice.actions

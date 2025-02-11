@@ -44,11 +44,11 @@ export const tasksSlice = createSlice({
 	}
 })
 
-export const { addTask, editTask, removeTask } = tasksSlice.actions
-
 const selectTasks = (state: RootState) => state.tasks
 const selectSelectedDate = (state: RootState) => state.schedule.selectedDate
 
 export const selectTasksBySelectedDate = createSelector([selectTasks, selectSelectedDate], (tasks, selectedDate) => {
 	return tasks.tasks.filter(task => task.date === selectedDate)
 })
+
+export const { addTask, editTask, removeTask } = tasksSlice.actions

@@ -1,7 +1,6 @@
 import { addPatient } from '@/app/features/patients/patientsSlice'
-import { RootState } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { Dispatch, SetStateAction, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'sonner'
 import { Button } from '../Button/Button'
 import { Field } from '../Field/Field'
@@ -11,10 +10,10 @@ interface CreatePatientModalProps {
 }
 
 export function CreatePatientModal({ setShowModal }: CreatePatientModalProps) {
-	const { patients } = useSelector((state: RootState) => state.patients)
+	const { patients } = useAppSelector(state => state.patients)
 	const lastPatientId = patients[patients.length - 1].id
 	const newId = lastPatientId ? String(Number(lastPatientId) + 1) : '1'
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const [fullName, setFullName] = useState('')
 	const [cpf, setCpf] = useState('')
 	const [dateOfBirth, setDateOfBirth] = useState('')

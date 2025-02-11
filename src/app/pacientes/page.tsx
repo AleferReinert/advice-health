@@ -7,12 +7,11 @@ import { Search } from '@/components/Search/Search'
 import { Section } from '@/components/Section/Section'
 import { useEffect, useState } from 'react'
 import { HiUserPlus } from 'react-icons/hi2'
-import { useSelector } from 'react-redux'
-import { RootState } from '../store'
+import { useAppSelector } from '../hooks'
 
 export default function Patients() {
 	const [createPatientModal, setCreatePatientModal] = useState(false)
-	const { filteredEventsBySearchTerm } = useSelector((state: RootState) => state.schedule)
+	const { filteredEventsBySearchTerm } = useAppSelector(state => state.schedule)
 
 	useEffect(() => {
 		document.title = `AdviceHealth - Pacientes`

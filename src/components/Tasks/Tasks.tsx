@@ -1,11 +1,11 @@
 import { editTask, removeTask, selectTasksBySelectedDate } from '@/app/features/tasks/tasksSlice'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { AiOutlineCheckCircle, AiOutlineClockCircle, AiOutlineCloseCircle } from 'react-icons/ai'
-import { useDispatch, useSelector } from 'react-redux'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export function Tasks() {
-	const tasksBySelectedDate = useSelector(selectTasksBySelectedDate)
-	const dispatch = useDispatch()
+	const tasksBySelectedDate = useAppSelector(selectTasksBySelectedDate)
+	const dispatch = useAppDispatch()
 
 	return tasksBySelectedDate.length > 0 ? (
 		<div className='overflow-x-auto'>

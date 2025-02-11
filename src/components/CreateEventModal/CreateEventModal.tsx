@@ -1,14 +1,13 @@
 import { addEvent } from '@/app/features/schedule/scheduleSlice'
-import { RootState } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Button } from '../Button/Button'
 import { Field } from '../Field/Field'
 
 export function CreateEventModal() {
-	const { patients } = useSelector((state: RootState) => state.patients)
-	const { doctors } = useSelector((state: RootState) => state.doctors)
-	const dispatch = useDispatch()
+	const { patients } = useAppSelector(state => state.patients)
+	const { doctors } = useAppSelector(state => state.doctors)
+	const dispatch = useAppDispatch()
 	const [patientId, setPatientId] = useState<string>()
 	const [doctorId, setDoctorId] = useState<string>()
 	const [date, setDate] = useState<Date | null>()

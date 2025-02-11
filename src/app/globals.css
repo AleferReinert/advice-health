@@ -58,7 +58,7 @@ table {
 
 /* react-calendar */
 .react-calendar {
-	@apply !min-w-[18rem] !border-0 !bg-white;
+	@apply !min-w-[18rem] !border-0 !bg-white font-light;
 }
 
 .react-calendar__month-view__days__day,
@@ -67,15 +67,22 @@ button.react-calendar__month-view__days__day--weekend {
 }
 
 /* estilizar dias, meses, anos e decadas com compromissos */
+.react-calendar__tile--now {
+	@apply !font-black relative after:content-['.'] after:absolute after:w-full after:bottom-0 after:left-0;
+}
+
 .hasEvent,
+.hasTask,
 .react-calendar__month-view__days__day--weekend.hasEvent,
+.react-calendar__month-view__days__day--weekend.hasTask,
 .react-calendar__century-view__decades__decade:not(:disabled),
 .react-calendar__decade-view__years__year:not(:disabled),
 .react-calendar__year-view__months__month:not(:disabled) {
 	@apply !text-primary font-medium cursor-pointer pointer-events-auto;
 }
 
-.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasEvent {
+.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasEvent,
+.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasTask {
 	@apply !text-white;
 }
 

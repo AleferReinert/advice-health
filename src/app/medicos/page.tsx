@@ -1,6 +1,4 @@
 'use client'
-import { selectEventsByDoctorOnSelectedDate } from '@/app/features/schedule/scheduleSlice'
-import { RootState } from '@/app/store'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Button } from '@/components/Button/Button'
 import { Calendar } from '@/components/Calendar/Calendar'
@@ -15,14 +13,16 @@ import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { useEffect, useState } from 'react'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { useSelector } from 'react-redux'
+import { selectEventsByDoctorId, selectEventsByDoctorIdOnSelectedDate } from '../features/schedule/scheduleSlice'
+import { useAppSelector } from '../hooks'
 
 export default function DoctorsPage() {
-	const { selectedDate, selectedDoctor } = useSelector((state: RootState) => state.schedule)
-	const { patients } = useSelector((state: RootState) => state.patients)
-	const { doctors } = useSelector((state: RootState) => state.doctors)
+	const { selectedDate, selectedDoctor } = useAppSelector(state => state.schedule)
+	const { patients } = useAppSelector(state => state.patients)
+	const { doctors } = useAppSelector(state => state.doctors)
 	const [createAppointmentModal, setCreateAppointmentModal] = useState(false)
-	const eventsByDoctorOnSelectedDate = useSelector(selectEventsByDoctorOnSelectedDate)
+	const eventsByDoctorId = useAppSelector(selectEventsByDoctorId)
+	const eventsByDoctorIdOnSelectedDate = useAppSelector(selectEventsByDoctorIdOnSelectedDate)
 
 	useEffect(() => {
 		document.title = `AdviceHealth - ${mockMenu[1].title}`
@@ -32,12 +32,12 @@ export default function DoctorsPage() {
 		<>
 			<div className='flex flex-col gap-4'>
 				<div className='grid gap-4 md:grid-cols-[min-content_1fr] xl:grid-cols-2'>
-					<Calendar />
-
 					<BoxContent>
 						<Heading theme='box'>Médicos</Heading>
 						<DoctorList doctors={doctors} />
 					</BoxContent>
+
+					<Calendar events={eventsByDoctorId} />
 				</div>
 
 				<div className='flex justify-end'>
@@ -47,7 +47,7 @@ export default function DoctorsPage() {
 				</div>
 
 				<Section title={`Consultas - ${selectedDoctor.name} (${format(selectedDate, 'dd/MM/yy', { locale: ptBR })})`}>
-					<Schedule events={eventsByDoctorOnSelectedDate} showActionButtons />
+					<Schedule events={eventsByDoctorIdOnSelectedDate} showActionButtons showDoctor />
 				</Section>
 			</div>
 

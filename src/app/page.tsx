@@ -11,19 +11,20 @@ import { Schedule } from '@/components/Schedule/Schedule'
 import { Section } from '@/components/Section/Section'
 import { Tasks } from '@/components/Tasks/Tasks'
 import { formatPrice } from '@/utils/formatPrice'
-import { useSelector } from 'react-redux'
 import { selectTasksBySelectedDate } from './features/tasks/tasksSlice'
+import { useAppSelector } from './hooks'
 
 export default function Home() {
-	const eventsBySelectedDate = useSelector(selectEventsBySelectedDate)
-	const tasksBySelectedDate = useSelector(selectTasksBySelectedDate)
-	const attendedPatients = useSelector(selectAttendedPatientsOnSelectedDate)
-	const totalAmountReceived = useSelector(selectTotalAmountReceivedOnSelectedDate)
+	const eventsBySelectedDate = useAppSelector(selectEventsBySelectedDate)
+	const tasksBySelectedDate = useAppSelector(selectTasksBySelectedDate)
+	const attendedPatients = useAppSelector(selectAttendedPatientsOnSelectedDate)
+	const totalAmountReceived = useAppSelector(selectTotalAmountReceivedOnSelectedDate)
+	const { events, selectedDate } = useAppSelector(state => state.schedule)
 
 	return (
 		<div className='flex flex-col gap-4'>
 			<div className='grid gap-4 grid-cols-1 md:grid-cols-[3fr_2fr] xl:grid-cols-[1fr_2fr]'>
-				<Calendar />
+				<Calendar events={events} selectedDate={selectedDate} showTasks />
 
 				<div className='grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-[auto_auto]'>
 					<BoxContent>

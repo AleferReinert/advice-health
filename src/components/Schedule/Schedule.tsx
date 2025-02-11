@@ -1,10 +1,9 @@
 import { editEvent, EventState, removeEvent } from '@/app/features/schedule/scheduleSlice'
-import { RootState } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { formatPrice } from '@/utils/formatPrice'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
-import { useDispatch, useSelector } from 'react-redux'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export interface PaymentProps {
@@ -32,9 +31,9 @@ interface ScheduleProps {
 }
 
 export function Schedule({ events, showDoctor = false, showData, showActionButtons }: ScheduleProps) {
-	const { patients } = useSelector((state: RootState) => state.patients)
-	const { doctors } = useSelector((state: RootState) => state.doctors)
-	const dispatch = useDispatch()
+	const { patients } = useAppSelector(state => state.patients)
+	const { doctors } = useAppSelector(state => state.doctors)
+	const dispatch = useAppDispatch()
 	const doctorStyles = showDoctor ? '' : 'hidden'
 	const dataStyles = showData ? '' : 'hidden'
 	const actionButtonsStyles = showActionButtons ? '' : 'hidden'

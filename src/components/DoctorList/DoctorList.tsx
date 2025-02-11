@@ -1,16 +1,13 @@
 'use client'
 import { DoctorsState } from '@/app/features/doctors/doctorsSlice'
 import { setSelectedDoctor } from '@/app/features/schedule/scheduleSlice'
-import { RootState } from '@/app/store'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import Image from 'next/image'
 import { AiFillCaretDown } from 'react-icons/ai'
-import { useDispatch, useSelector } from 'react-redux'
 
-interface DoctorListProps extends DoctorsState {}
-
-export const DoctorList = ({ doctors }: DoctorListProps) => {
-	const { selectedDoctor } = useSelector((state: RootState) => state.schedule)
-	const dispatch = useDispatch()
+export const DoctorList = ({ doctors }: DoctorsState) => {
+	const { selectedDoctor } = useAppSelector(state => state.schedule)
+	const dispatch = useAppDispatch()
 
 	return (
 		<ul className='w-full mt-4'>

@@ -1,12 +1,11 @@
 import { filterEventsByPatientName } from '@/app/features/schedule/scheduleSlice'
-import { AppDispatch } from '@/app/store'
+import { useAppDispatch } from '@/app/hooks'
 import { ChangeEvent, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
-import { useDispatch } from 'react-redux'
 
 export function Search() {
 	const [searchTerm, setSearchTerm] = useState('')
-	const dispatch: AppDispatch = useDispatch()
+	const dispatch = useAppDispatch()
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
