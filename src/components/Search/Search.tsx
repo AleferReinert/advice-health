@@ -30,7 +30,7 @@ export function Search() {
 					value={searchTerm}
 					onChange={e => handleSearch(e)}
 				/>
-				<button title='Pesquisar' className='transition text-gray-500 group-focus-within:text-text hover:text-primary'>
+				<button title='Pesquisar' className='transition text-gray-500 group-focus-within:text-text hover:!text-primary'>
 					<AiOutlineSearch aria-hidden size={28} />
 				</button>
 			</div>
