@@ -31,7 +31,7 @@ export default function PatientsPage() {
 						const firstAndLastName = `${fullName[0]} ${fullName[fullName.length - 1]}`
 
 						return (
-							<BoxContent key={index}>
+							<BoxContent key={index} className='transition hover:scale-105'>
 								<Link title='Visualizar detalhes' href={`/paciente/${patient.id}`} className='p-4 pb-0'>
 									<h2 className='font-semibold' title={patient.fullName}>
 										{firstAndLastName}
