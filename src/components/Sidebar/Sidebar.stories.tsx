@@ -20,12 +20,12 @@ export const Default: Story = {
 		const canvas = within(canvasElement)
 
 		await step('Show button to open sidebar', () => {
-			const buttonOpen = canvas.getByRole('button', { name: 'Abrir menu' })
+			const buttonOpen = canvas.getByRole('button', { name: 'Expandir menu' })
 			expect(buttonOpen).toBeVisible()
 		})
 
 		await step('Hidden button to close sidebar', () => {
-			const buttonClose = canvas.queryByRole('button', { name: 'Fechar menu' })
+			const buttonClose = canvas.queryByRole('button', { name: 'Recolher menu' })
 			expect(buttonClose).not.toBeInTheDocument()
 		})
 
@@ -34,7 +34,7 @@ export const Default: Story = {
 				const link = canvas.getAllByRole('link')[index]
 				expect(link).toHaveAttribute('href', item.url)
 				expect(link).toHaveAttribute('title', item.title)
-				const icon = within(link).getByRole('img')
+				const icon = within(link).getByRole('img', { hidden: true })
 				expect(icon).toBeVisible()
 			})
 		})

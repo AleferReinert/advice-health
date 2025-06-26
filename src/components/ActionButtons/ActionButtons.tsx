@@ -9,10 +9,10 @@ export function ActionButtons({ onEdit, onDelete }: ActionButtonsProps) {
 	return (
 		<div className='flex gap-4'>
 			<button title='Editar' onClick={onEdit}>
-				<AiOutlineEdit role='img' size={20} className='transition hover:text-yellow-600' />
+				<AiOutlineEdit role='img' aria-hidden size={20} className='transition hover:text-yellow-600' />
 			</button>
 			<button title='Excluir' onClick={onDelete}>
-				<AiOutlineClose role='img' size={20} className='transition hover:text-red-600' />
+				<AiOutlineClose role='img' aria-hidden size={20} className='transition hover:text-red-600' />
 			</button>
 		</div>
 	)

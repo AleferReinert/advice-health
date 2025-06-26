@@ -3,7 +3,7 @@ import { expect, within } from '@storybook/test'
 import { Layout } from './Layout'
 
 const meta: Meta<typeof Layout> = {
-	title: 'Components/Layout',
+	title: 'Layouts/Main',
 	component: Layout,
 	args: {
 		children: <p>Lorem ipsum dolor sit amet.</p>
@@ -14,7 +14,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	name: 'Layout',
+	name: 'Main',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 

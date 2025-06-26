@@ -26,7 +26,7 @@ export function Search() {
 				<input
 					type='text'
 					placeholder='Digite o nome ou CPF'
-					className='placeholder:text-inherit bg-transparent w-full py-2 text-gray-500 focus:text-text'
+					className='placeholder:text-inherit bg-transparent w-full py-2 text-gray-00 focus:text-text'
 					value={searchTerm}
 					onChange={e => handleSearch(e)}
 				/>

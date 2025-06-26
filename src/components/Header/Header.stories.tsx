@@ -27,7 +27,7 @@ export const Default: Story = {
 		})
 
 		await step('Profile: photo and name', () => {
-			const photo = canvas.getByRole('img')
+			const photo = canvas.getByRole('img', { hidden: true })
 			const name = canvas.getByRole('link')
 			expect(photo).toBeVisible()
 			expect(name).toHaveTextContent('John Doe')

@@ -25,7 +25,7 @@ export function Header() {
 						<p className='leading-tight font-light'>{description}</p>
 					</div>
 					<Link href='' className='hidden lg:flex flex-col gap-1 items-center text-sm group'>
-						<FaUserCircle size={32} role='img' className='transition group-hover:scale-95' />
+						<FaUserCircle size={32} role='img' aria-hidden className='transition group-hover:scale-95' />
 						John Doe
 					</Link>
 				</div>

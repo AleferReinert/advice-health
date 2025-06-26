@@ -20,14 +20,14 @@ export const Default: Story = {
 
 		await step('Button edit', () => {
 			const button = canvas.getByRole('button', { name: 'Editar' })
-			const svg = within(button).getByRole('img')
+			const svg = within(button).getByRole('img', { hidden: true })
 			expect(button).toBeVisible()
 			expect(svg).toBeVisible()
 		})
 
 		await step('Button delete', () => {
 			const button = canvas.getByRole('button', { name: 'Excluir' })
-			const svg = within(button).getByRole('img')
+			const svg = within(button).getByRole('img', { hidden: true })
 			expect(button).toBeVisible()
 			expect(svg).toBeVisible()
 		})

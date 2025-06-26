@@ -7,7 +7,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: colors.teal[600],
+				primary: colors.teal[700],
 				secondary: colors.gray[50],
 				text: colors.gray[700]
 			},

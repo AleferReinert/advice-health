@@ -31,7 +31,7 @@ export function Sidebar({ menu }: SidebarProps) {
 				<nav className='flex w-full h-full justify-between md:flex-col'>
 					<button
 						onClick={() => setFullSidebar(!fullSidebar)}
-						title={fullSidebar ? 'Fechar menu' : 'Abrir menu'}
+						title={fullSidebar ? 'Recolher menu' : 'Expandir menu'}
 						className={`${baseStyles} transition-all relative h-14 hidden lg:flex`}
 					>
 						<FiChevronsRight
@@ -51,7 +51,9 @@ export function Sidebar({ menu }: SidebarProps) {
 								flex justify-center md:justify-start items-center last:mt-auto
 							`}
 							>
-								<div>{item.icon({ size: iconSize, role: 'img', className: 'text-secondary' })}</div>
+								<div>
+									{item.icon({ 'size': iconSize, 'role': 'img', 'aria-hidden': true, 'className': 'text-secondary' })}
+								</div>
 								<div className={`overflow-hidden whitespace-nowrap mr-4 hidden md:block`}>{item.title}</div>
 							</Link>
 						)
