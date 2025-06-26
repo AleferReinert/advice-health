@@ -33,7 +33,7 @@ export const mockMenu: MenuItemProps[] = [
 	{
 		title: 'Sair',
 		icon: FiLogOut,
-		url: '/logout',
+		url: '/',
 		description: ''
 	}
 ]
