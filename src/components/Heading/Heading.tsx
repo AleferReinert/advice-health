@@ -8,8 +8,8 @@ interface HeadingProps {
 
 export function Heading({ children, align, theme = 'section' }: HeadingProps) {
 	const alignStyles = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : ''
-	const themeBox = 'text-text text-lg font-medium p-4 pb-0'
 	const themeSection = 'font-extralight text-2xl border-b py-2 my-4'
+	const themeBox = 'text-text text-lg font-medium p-4 pb-0'
 	const themeStyles = theme === 'box' ? themeBox : themeSection
 
 	return <h2 className={`${alignStyles} ${themeStyles} leading-none`}>{children}</h2>

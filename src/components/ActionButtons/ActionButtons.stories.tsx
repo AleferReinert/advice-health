@@ -1,10 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { within } from '@storybook/test'
+import { expect, within } from '@storybook/test'
 import { ActionButtons } from './ActionButtons'
 
 const meta: Meta<typeof ActionButtons> = {
 	title: 'Components/ActionButtons',
-	component: ActionButtons
+	component: ActionButtons,
+	parameters: {
+		layout: 'padded'
+	}
 }
 
 export default meta
@@ -15,8 +18,19 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		// Todo
-		// await step('', () => {})
+		await step('Button edit', () => {
+			const button = canvas.getByRole('button', { name: 'Editar' })
+			const svg = within(button).getByRole('img')
+			expect(button).toBeVisible()
+			expect(svg).toBeVisible()
+		})
+
+		await step('Button delete', () => {
+			const button = canvas.getByRole('button', { name: 'Excluir' })
+			const svg = within(button).getByRole('img')
+			expect(button).toBeVisible()
+			expect(svg).toBeVisible()
+		})
 	}
 }
 

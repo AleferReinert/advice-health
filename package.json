@@ -10,8 +10,8 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test-storybook": "test-storybook",
-		"prepare": "husky",
-		"chromatic": "npx chromatic"
+		"chromatic": "npx chromatic",
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@loadable/component": "^5.16.4",
@@ -32,7 +32,6 @@
 	"devDependencies": {
 		"@chromatic-com/storybook": "1.9.0",
 		"@commitlint/config-conventional": "^19.6.0",
-		"@commitlint/cz-commitlint": "^19.6.1",
 		"@storybook/addon-essentials": "8.3.4",
 		"@storybook/addon-interactions": "^8.3.4",
 		"@storybook/addon-links": "8.3.4",
@@ -49,21 +48,14 @@
 		"@types/react-slick": "^0.23.13",
 		"@types/redux-logger": "^3.0.13",
 		"chromatic": "^11.12.5",
-		"commitizen": "^4.3.1",
-		"commitlint": "^19.6.1",
 		"eslint": "^8",
 		"eslint-config-next": "14.2.6",
 		"eslint-plugin-storybook": "^0.9.0",
-		"husky": "^9.1.6",
+		"husky": "^9.1.7",
 		"postcss": "^8",
 		"redux-logger": "^3.0.6",
 		"storybook": "8.3.4",
 		"tailwindcss": "^3.4.1",
 		"typescript": "^4.9.5"
-	},
-	"config": {
-		"commitizen": {
-			"path": "@commitlint/cz-commitlint"
-		}
 	}
 }

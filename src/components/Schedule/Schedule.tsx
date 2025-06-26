@@ -1,9 +1,7 @@
-import { editEvent, EventState, removeEvent } from '@/app/features/schedule/scheduleSlice'
+import { AppointmentState, editAppointment, removeAppointment } from '@/app/features/appointments/appointmentsSlice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
-import { formatPrice } from '@/utils/formatPrice'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale/pt-BR'
 import { AiOutlineCheckCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { formatPrice } from '../../utils/formatPrice'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export interface PaymentProps {
@@ -27,10 +25,10 @@ interface ScheduleProps {
 	showDoctor?: boolean
 	showData?: boolean
 	showActionButtons?: boolean
-	events: EventState[]
+	appointments: AppointmentState[]
 }
 
-export function Schedule({ events, showDoctor = false, showData, showActionButtons }: ScheduleProps) {
+export function Schedule({ appointments, showDoctor = false, showData, showActionButtons }: ScheduleProps) {
 	const { patients } = useAppSelector(state => state.patients)
 	const { doctors } = useAppSelector(state => state.doctors)
 	const dispatch = useAppDispatch()
@@ -38,7 +36,7 @@ export function Schedule({ events, showDoctor = false, showData, showActionButto
 	const dataStyles = showData ? '' : 'hidden'
 	const actionButtonsStyles = showActionButtons ? '' : 'hidden'
 
-	return events.length > 0 ? (
+	return appointments.length > 0 ? (
 		<div className='overflow-x-auto'>
 			<table>
 				<thead>
@@ -53,30 +51,29 @@ export function Schedule({ events, showDoctor = false, showData, showActionButto
 					</tr>
 				</thead>
 				<tbody>
-					{events.map((event, index) => {
-						const date = format(event.date, 'dd/MM/yy', { locale: ptBR })
-						const hour = format(event.date, 'HH:mm', { locale: ptBR }) + 'h'
-						const doctorName = doctors.find(doctor => doctor.id === event.doctorId)?.name
-						const patientName = patients.find(patient => patient.id === event.patientId)?.fullName
-						const price = formatPrice(event.price)
-						const statusIcon = event.attended ? (
-							<AiOutlineCheckCircle className='text-primary' title='Atendido' />
-						) : (
-							<AiOutlineCloseCircle className='text-red-600' title='Não atendido' />
-						)
-
+					{appointments.map((appointments, index) => {
 						return (
 							<tr key={index}>
-								<td className={dataStyles}>{date}</td>
-								<td>{hour}</td>
-								<td className={doctorStyles + ' font-normal'}>{doctorName}</td>
-								<td className='font-normal'>{patientName}</td>
-								<td>{price}</td>
-								<td className='w-0 [&_svg]:mx-auto [&_svg]:size-5'>{statusIcon}</td>
+								<td className={dataStyles}>{appointments.date}</td>
+								<td>{appointments.time}</td>
+								<td className={doctorStyles + ' font-normal'}>
+									{doctors.find(doctor => doctor.id === appointments.doctorId)?.personalInfo.fullName}
+								</td>
+								<td className='font-normal'>
+									{patients.find(patient => patient.id === appointments.patientId)?.fullName}
+								</td>
+								<td>{formatPrice(appointments.price)}</td>
+								<td className='w-0 [&_svg]:mx-auto [&_svg]:size-5'>
+									{appointments.attended ? (
+										<AiOutlineCheckCircle className='text-primary' title='Atendido' />
+									) : (
+										<AiOutlineCloseCircle className='text-red-600' title='Não atendido' />
+									)}
+								</td>
 								<td className={`${actionButtonsStyles} w-0`}>
 									<ActionButtons
-										onEdit={() => dispatch(editEvent(event.id))}
-										onDelete={() => dispatch(removeEvent(event.id))}
+										onEdit={() => dispatch(editAppointment(appointments.id))}
+										onDelete={() => dispatch(removeAppointment(appointments.id))}
 									/>
 								</td>
 							</tr>

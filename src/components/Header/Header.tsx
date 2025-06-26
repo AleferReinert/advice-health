@@ -1,8 +1,8 @@
 'use client'
-import { mockMenu } from '@/mock/menu.mock'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FaUserCircle } from 'react-icons/fa'
+import { mockMenu } from '../../mock/menu.mock'
 import { Container } from '../Container/Container'
 
 export function Header() {

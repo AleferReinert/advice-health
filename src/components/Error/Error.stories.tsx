@@ -4,7 +4,10 @@ import { Error } from './Error'
 
 const meta: Meta<typeof Error> = {
 	title: 'Components/Error',
-	component: Error
+	component: Error,
+	parameters: {
+		layout: 'padded'
+	}
 }
 
 export default meta

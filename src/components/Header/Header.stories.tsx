@@ -1,6 +1,6 @@
-import { mockMenu } from '@/mock/menu.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { expect, within } from '@storybook/test'
+import { mockMenu } from '../../mock/menu.mock'
 import { Header } from './Header'
 
 const meta: Meta<typeof Header> = {

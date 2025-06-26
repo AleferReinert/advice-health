@@ -1,6 +1,7 @@
 import { editTask, removeTask, selectTasksBySelectedDate } from '@/app/features/tasks/tasksSlice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
 import { AiOutlineCheckCircle, AiOutlineClockCircle, AiOutlineCloseCircle } from 'react-icons/ai'
+import { formatDate } from '../../utils/formatDate'
 import { ActionButtons } from '../ActionButtons/ActionButtons'
 
 export function Tasks() {
@@ -20,27 +21,34 @@ export function Tasks() {
 				</thead>
 				<tbody>
 					{tasksBySelectedDate.map((task, index) => {
-						const statusStyles = task.isCompleted
-							? 'text-primary'
-							: task.status === 'Atrasada'
-							? 'text-red-600'
-							: 'text-yellow-600'
-						const statusIcon = task.isCompleted ? (
-							<AiOutlineCheckCircle size={20} title='Concluído' />
-						) : task.status === 'Atrasada' ? (
-							<AiOutlineCloseCircle size={20} title='Atrasado' />
-						) : (
-							<AiOutlineClockCircle size={20} title='Pendente' />
-						)
-						const statusText = task.isCompleted ? 'Concluído' : task.status
+						function status() {
+							if (task.isCompleted) {
+								return {
+									title: 'Concluída',
+									style: 'text-primary',
+									icon: <AiOutlineCheckCircle size={20} title={'Concluída'} />
+								}
+							} else if (task.date === formatDate(new Date())) {
+								return {
+									title: 'Pendente',
+									style: 'text-yellow-600',
+									icon: <AiOutlineClockCircle size={20} title='Pendente' />
+								}
+							}
+							return {
+								title: 'Atrasada',
+								style: 'text-red-600',
+								icon: <AiOutlineCloseCircle size={20} title='Atrasada' />
+							}
+						}
 
 						return (
 							<tr key={index}>
 								<td className='whitespace-normal'>{task.text}</td>
 								<td className='hidden lg:table-cell'>{task.priority}</td>
-								<td className={`w-0 text-center ${statusStyles} `}>
-									<span className='inline-block w-min'>{statusIcon}</span>
-									<span className='hidden'>{statusText}</span>
+								<td className={`w-0 text-center ${status().style} `}>
+									<span className='inline-block w-min'>{status().icon}</span>
+									<span className='hidden'>{status().title}</span>
 								</td>
 								<td className='text-center'>
 									<ActionButtons

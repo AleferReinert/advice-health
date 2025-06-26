@@ -8,7 +8,7 @@ export default {
 		extend: {
 			colors: {
 				primary: colors.teal[600],
-				secondary: '#041634',
+				secondary: colors.gray[50],
 				text: colors.gray[700]
 			},
 			borderRadius: {

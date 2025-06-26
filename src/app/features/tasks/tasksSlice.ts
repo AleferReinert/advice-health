@@ -1,11 +1,10 @@
 import { RootState } from '@/app/store'
-import { mockTasks } from '@/mock/tasks.mock'
 import { createSelector, createSlice } from '@reduxjs/toolkit'
+import { mockTasks } from '../../../mock/tasks.mock'
 
 export interface TaskState {
 	id: string
 	date: string
-	status: 'Concluída' | 'Pendente' | 'Atrasada'
 	isCompleted: boolean
 	text: string
 	priority: 'Alta' | 'Média' | 'Baixa' | 'Urgente'

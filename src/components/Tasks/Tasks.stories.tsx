@@ -1,6 +1,6 @@
-import { mockTasks } from '@/mock/tasks.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
+import { mockTasks } from '../../mock/tasks.mock'
 import { Tasks } from './Tasks'
 
 const meta: Meta<typeof Tasks> = {

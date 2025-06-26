@@ -5,11 +5,10 @@ import { toast } from 'sonner'
 import { Button } from '../Button/Button'
 import { Field } from '../Field/Field'
 
-interface CreatePatientModalProps {
+interface PatientFormProps {
 	setShowModal: Dispatch<SetStateAction<boolean>>
 }
-
-export function CreatePatientModal({ setShowModal }: CreatePatientModalProps) {
+export function PatientForm({ setShowModal }: PatientFormProps) {
 	const { patients } = useAppSelector(state => state.patients)
 	const lastPatientId = patients[patients.length - 1].id
 	const newId = lastPatientId ? String(Number(lastPatientId) + 1) : '1'

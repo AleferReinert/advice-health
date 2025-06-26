@@ -1,61 +1,66 @@
 'use client'
+import { useAppSelector } from '@/app/hooks'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Button } from '@/components/Button/Button'
-import { Calendar } from '@/components/Calendar/Calendar'
-import { CreateEventModal } from '@/components/CreateEventModal/CreateEventModal'
-import { DoctorList } from '@/components/DoctorList/DoctorList'
-import { Heading } from '@/components/Heading/Heading'
 import { Modal } from '@/components/Modal/Modal'
-import { Schedule } from '@/components/Schedule/Schedule'
-import { Section } from '@/components/Section/Section'
-import { mockMenu } from '@/mock/menu.mock'
-import { format } from 'date-fns'
-import { ptBR } from 'date-fns/locale/pt-BR'
-import { useEffect, useState } from 'react'
-import { AiOutlinePlus } from 'react-icons/ai'
-import { selectEventsByDoctorId, selectEventsByDoctorIdOnSelectedDate } from '../features/schedule/scheduleSlice'
-import { useAppSelector } from '../hooks'
+import { PatientForm } from '@/components/PatientForm/PatientForm'
+import { Search } from '@/components/Search/Search'
+import Link from 'next/link'
+import { useState } from 'react'
+import { FaRegEnvelope, FaWhatsapp } from 'react-icons/fa6'
+import { HiUserPlus } from 'react-icons/hi2'
 
 export default function DoctorsPage() {
-	const { selectedDate, selectedDoctor } = useAppSelector(state => state.schedule)
-	const { patients } = useAppSelector(state => state.patients)
-	const { doctors } = useAppSelector(state => state.doctors)
-	const [createAppointmentModal, setCreateAppointmentModal] = useState(false)
-	const eventsByDoctorId = useAppSelector(selectEventsByDoctorId)
-	const eventsByDoctorIdOnSelectedDate = useAppSelector(selectEventsByDoctorIdOnSelectedDate)
-
-	useEffect(() => {
-		document.title = `AdviceHealth - ${mockMenu[1].title}`
-	}, [])
+	const [createPatientModal, setCreatePatientModal] = useState(false)
+	const { filteredDoctorsByName } = useAppSelector(state => state.doctors)
 
 	return (
 		<>
-			<div className='flex flex-col gap-4'>
-				<div className='grid gap-4 md:grid-cols-[min-content_1fr] xl:grid-cols-2'>
-					<BoxContent>
-						<Heading theme='box'>Médicos</Heading>
-						<DoctorList doctors={doctors} />
-					</BoxContent>
-
-					<Calendar events={eventsByDoctorId} />
-				</div>
-
-				<div className='flex justify-end'>
-					<Button onClick={() => setCreateAppointmentModal(true)} title='Nova consulta'>
-						Nova consulta <AiOutlinePlus />
-					</Button>
-				</div>
-
-				<Section title={`Consultas - ${selectedDoctor.name} (${format(selectedDate, 'dd/MM/yy', { locale: ptBR })})`}>
-					<Schedule events={eventsByDoctorIdOnSelectedDate} showActionButtons showDoctor />
-				</Section>
+			<div className='flex gap-2 mb-4'>
+				<Search />
+				<Button onClick={() => setCreatePatientModal(true)} title='Novo médico' className='w-min'>
+					<span className='hidden sm:inline'>Adicionar médico</span>
+					<HiUserPlus />
+				</Button>
 			</div>
 
-			{patients.length > 0 && (
-				<Modal title='Novo agendamento' showModal={createAppointmentModal} setShowModal={setCreateAppointmentModal}>
-					<CreateEventModal />
-				</Modal>
-			)}
+			<div className='grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+				{filteredDoctorsByName.map((doctor, index) => {
+					const fullName = doctor.personalInfo.fullName.split(' ')
+					const firstAndLastName = `${fullName[0]} ${fullName[fullName.length - 1]}`
+					const formattedName = `${doctor.personalInfo.gender === 'male' ? 'Dr. ' : 'Dra. '}  ${firstAndLastName}`
+
+					return (
+						<BoxContent key={index}>
+							<Link title='Visualizar detalhes' href={`/profissional/${doctor.id}`} className='p-4 pb-0'>
+								<h2 className='font-semibold'>{formattedName}</h2>
+								<p className='opacity-85 text-xs font-light'>CRM {doctor.professionalInfo.crm}</p>
+								<p className='font-light'>{doctor.professionalInfo.specialties.join(', ')}</p>
+							</Link>
+							<div className='flex gap-4 [&_svg]:size-5 p-4 pt-2'>
+								<a
+									title='E-mail'
+									href={`mailto:${doctor.professionalInfo.email}`}
+									className='transition hover:text-primary'
+								>
+									<FaRegEnvelope />
+								</a>
+								<a
+									title='WhatsApp'
+									href={`https://wa.me/55${doctor.professionalInfo.phone.replace(/[ ()-]/g, '')}`}
+									className='transition hover:text-primary'
+								>
+									<FaWhatsapp />
+								</a>
+							</div>
+						</BoxContent>
+					)
+				})}
+			</div>
+
+			<Modal title='Novo médico' showModal={createPatientModal} setShowModal={setCreatePatientModal}>
+				<PatientForm setShowModal={setCreatePatientModal} />
+			</Modal>
 		</>
 	)
 }

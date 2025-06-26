@@ -7,6 +7,9 @@ const meta: Meta<typeof Button> = {
 	component: Button,
 	args: {
 		children: 'Default Button'
+	},
+	parameters: {
+		layout: 'padded'
 	}
 }
 

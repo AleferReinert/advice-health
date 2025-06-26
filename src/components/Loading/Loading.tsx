@@ -41,7 +41,7 @@ export function Loading({ show = true, type = 'full', showLoad = false, ...rest 
 	if (type === 'animation') {
 		return (
 			<div title={message} className={`${loadingStyles({ type })} ${rest.className ?? rest.className}`}>
-				<div className='size-full animate-spin rounded-full border border-t-secondary border-r-secondary' />
+				<div className='size-full animate-spin rounded-full border border-t-primary border-r-primary' />
 			</div>
 		)
 	}

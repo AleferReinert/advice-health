@@ -8,6 +8,9 @@ const meta: Meta<typeof Section> = {
 	args: {
 		title: 'Section title',
 		children: 'Lorem ipsum dolor'
+	},
+	parameters: {
+		layout: 'padded'
 	}
 }
 
@@ -19,9 +22,9 @@ export const Default: Story = {
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
 
-		step('Title', () => {
-			const title = canvas.getByRole('heading', { level: 2 })
-			expect(title).toHaveTextContent('Section title')
+		await step('Title', () => {
+			const title = canvas.getByRole('heading', { level: 2, name: 'Section title' })
+			expect(title).toBeVisible()
 		})
 
 		step('Children', () => {

@@ -1,5 +1,5 @@
-import { mockPatients } from '@/mock/patients.mock'
 import { createSlice } from '@reduxjs/toolkit'
+import { mockPatients } from '../../../mock/patients.mock'
 
 export interface PatientState {
 	id: string
@@ -19,7 +19,7 @@ export interface PatientState {
 		state: string
 	}
 	emergencyContact?: {
-		name: string
+		fullName: string
 		phone: string
 		relation: string
 	}
@@ -28,10 +28,12 @@ export interface PatientState {
 
 interface PatientsState {
 	patients: PatientState[]
+	filteredPatientsByNameOrCpf: PatientState[]
 }
 
 const initialState: PatientsState = {
-	patients: mockPatients
+	patients: mockPatients,
+	filteredPatientsByNameOrCpf: mockPatients
 }
 
 export const patientsSlice = createSlice({
@@ -40,8 +42,22 @@ export const patientsSlice = createSlice({
 	reducers: {
 		addPatient: (state, action) => {
 			state.patients.push(action.payload)
+		},
+		editPatient: (state, action) => {
+			alert('todo: editPatient')
+		},
+		removePatient: (state, action) => {
+			alert('todo: removePatient')
+		},
+		setFilteredPatientsByNameOrCpf: (state, action) => {
+			state.filteredPatientsByNameOrCpf = state.patients.filter(patient => {
+				const isName = patient.fullName.toLowerCase().includes(action.payload.toLowerCase())
+				const isCpf = patient.cpf.replace(/[.-]/g, '').startsWith(action.payload.replace(/[.-]/g, ''))
+
+				return isName || isCpf
+			})
 		}
 	}
 })
 
-export const { addPatient } = patientsSlice.actions
+export const { addPatient, editPatient, removePatient, setFilteredPatientsByNameOrCpf } = patientsSlice.actions

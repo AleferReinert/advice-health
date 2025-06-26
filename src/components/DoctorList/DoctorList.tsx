@@ -19,21 +19,29 @@ export const DoctorList = ({ doctors }: DoctorsState) => {
 						key={index}
 						onClick={() => dispatch(setSelectedDoctor(doctor))}
 						className={`
-							${active ? 'border-primary bg-gray-50' : 'border-transparent opacity-90'} 
+							${active ? 'border-primary bg-secondary' : 'border-transparent opacity-90'} 
 							border-l-2 cursor-pointer flex gap-8 items-center justify-between py-2 pl-[.875rem] pr-4 transition-all
 							hover:bg-gray-100 hover:opacity-100
 						`}
 					>
 						<div className='flex gap-4 w-max'>
-							<Image alt={doctor.name} src={doctor.photo} width={48} height={48} className='rounded-full size-12' />
+							<Image
+								alt={doctor.personalInfo.fullName}
+								src={doctor.personalInfo.profilePictureUrl}
+								width={48}
+								height={48}
+								className='rounded-full size-12'
+							/>
 							<div>
 								<h3 className={`${active && 'text-primary'} font-medium transition whitespace-nowrap`}>
-									{doctor.name}
+									{doctor.personalInfo.fullName}
 								</h3>
-								<p className='text-sm'>{doctor.specialty}</p>
+								<p className='text-sm'>{doctor.professionalInfo.specialties}</p>
 							</div>
 						</div>
-						<AiFillCaretDown className={`${active ? 'text-primary' : 'text-transparent'} size-4 transition`} />
+						<AiFillCaretDown
+							className={`${active ? 'text-primary' : 'text-transparent'} size-4 transition md:-rotate-90`}
+						/>
 					</li>
 				)
 			})}

@@ -1,6 +1,6 @@
-import { mockDoctors } from '@/mock/doctors.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
+import { mockDoctors } from '../../mock/doctors.mock'
 import { DoctorList } from './DoctorList'
 
 const meta: Meta<typeof DoctorList> = {
@@ -8,6 +8,9 @@ const meta: Meta<typeof DoctorList> = {
 	component: DoctorList,
 	args: {
 		doctors: mockDoctors
+	},
+	parameters: {
+		layout: 'padded'
 	}
 }
 

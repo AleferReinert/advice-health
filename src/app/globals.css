@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .statsValue {
-	@apply text-primary text-2xl font-bold flex-grow flex items-center justify-center py-4 xl:text-7xl;
+	@apply text-primary text-2xl font-bold flex-grow flex items-center justify-center py-4;
 }
 
 * {
@@ -61,6 +61,10 @@ table {
 	@apply !min-w-[18rem] !border-0 !bg-white font-light;
 }
 
+.react-calendar__month-view__days {
+	@apply cursor-not-allowed;
+}
+
 .react-calendar__month-view__days__day,
 button.react-calendar__month-view__days__day--weekend {
 	@apply cursor-default pointer-events-none !text-gray-400;
@@ -68,12 +72,20 @@ button.react-calendar__month-view__days__day--weekend {
 
 /* estilizar dias, meses, anos e decadas com compromissos */
 .react-calendar__tile--now {
-	@apply !font-black relative after:content-['.'] after:absolute after:w-full after:bottom-0 after:left-0;
+	@apply border relative transition;
+
+	&:hover {
+		@apply border-primary;
+	}
+
+	&:after {
+		@apply content-['.'] absolute w-full bottom-0 left-0;
+	}
 }
 
-.hasEvent,
+.hasAppointment,
 .hasTask,
-.react-calendar__month-view__days__day--weekend.hasEvent,
+.react-calendar__month-view__days__day--weekend.hasAppointment,
 .react-calendar__month-view__days__day--weekend.hasTask,
 .react-calendar__century-view__decades__decade:not(:disabled),
 .react-calendar__decade-view__years__year:not(:disabled),
@@ -81,7 +93,7 @@ button.react-calendar__month-view__days__day--weekend {
 	@apply !text-primary font-medium cursor-pointer pointer-events-auto;
 }
 
-.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasEvent,
+.react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasAppointment,
 .react-calendar__tile--active.react-calendar__month-view__days__day--weekend.hasTask {
 	@apply !text-white;
 }

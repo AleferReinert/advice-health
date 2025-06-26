@@ -1,4 +1,4 @@
-import { filterEventsByPatientName } from '@/app/features/schedule/scheduleSlice'
+import { setFilteredPatientsByNameOrCpf } from '@/app/features/patients/patientsSlice'
 import { useAppDispatch } from '@/app/hooks'
 import { ChangeEvent, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -10,7 +10,7 @@ export function Search() {
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		setSearchTerm(value)
-		dispatch(filterEventsByPatientName(value))
+		dispatch(setFilteredPatientsByNameOrCpf(value))
 	}
 
 	return (
@@ -18,12 +18,12 @@ export function Search() {
 			<div className='flex w-full items-center justify-between gap-4'>
 				<input
 					type='text'
-					placeholder='Pesquisar paciente...'
+					placeholder='Digite o nome ou CPF'
 					className='placeholder:text-inherit bg-transparent w-full py-2 text-gray-500 focus:text-text'
 					value={searchTerm}
 					onChange={e => handleSearch(e)}
 				/>
-				<button className='transition text-gray-500 group-focus-within:text-text hover:text-primary'>
+				<button title='Pesquisar' className='transition text-gray-500 group-focus-within:text-text hover:text-primary'>
 					<AiOutlineSearch size={28} />
 				</button>
 			</div>

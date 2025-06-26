@@ -1,13 +1,13 @@
-import { mockEvents } from '@/mock/events.mock'
 import type { Meta, StoryObj } from '@storybook/react'
 import { within } from '@storybook/test'
+import { mockAppointments } from '../../mock/appointments.mock'
 import { Schedule } from './Schedule'
 
 const meta: Meta<typeof Schedule> = {
 	title: 'Components/Schedule',
 	component: Schedule,
 	args: {
-		events: mockEvents
+		appointments: mockAppointments
 	}
 }
 

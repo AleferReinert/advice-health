@@ -7,6 +7,9 @@ const meta: Meta<typeof BoxContent> = {
 	component: BoxContent,
 	args: {
 		children: <p>Lorem ipsum dolor sit amet.</p>
+	},
+	parameters: {
+		layout: 'padded'
 	}
 }
 
@@ -17,10 +20,14 @@ export const Default: Story = {
 	name: 'BoxContent',
 	play: async ({ canvasElement, step }) => {
 		const canvas = within(canvasElement)
+		const children = canvas.getByRole('paragraph')
 
 		await step('Children', () => {
-			const children = canvas.getByRole('paragraph')
 			expect(children).toBeVisible()
+		})
+		await step('Background white', () => {
+			const box = children.parentElement
+			expect(box).toHaveStyle('background-color: rgba(255,255,255)')
 		})
 	}
 }

@@ -1,5 +1,5 @@
 'use client'
-import { Error } from '@/components/Error/Error'
+import { Error } from '../components/Error/Error'
 
 export default function GlobalError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
 	console.error(`src/app/global-error.tsx: ${error}`)
