@@ -2,12 +2,12 @@
 import { useAppSelector } from '@/app/hooks'
 import { BoxContent } from '@/components/BoxContent/BoxContent'
 import { Button } from '@/components/Button/Button'
+import { ContactLinks } from '@/components/ContactLinks/ContactLinks'
 import { Modal } from '@/components/Modal/Modal'
 import { PatientForm } from '@/components/PatientForm/PatientForm'
 import { Search } from '@/components/Search/Search'
 import Link from 'next/link'
 import { useState } from 'react'
-import { FaRegEnvelope, FaWhatsapp } from 'react-icons/fa6'
 import { HiUserPlus } from 'react-icons/hi2'
 
 export default function PatientsPage() {
@@ -33,21 +33,12 @@ export default function PatientsPage() {
 						return (
 							<BoxContent key={index}>
 								<Link title='Visualizar detalhes' href={`/paciente/${patient.id}`} className='p-4 pb-0'>
-									<h2 className='font-semibold'>{firstAndLastName}</h2>
+									<h2 className='font-semibold' title={patient.fullName}>
+										{firstAndLastName}
+									</h2>
 									<p className='opacity-85 text-sm font-light'>CPF {patient.cpf}</p>
 								</Link>
-								<div className='flex gap-4 [&_svg]:size-5 p-4 pt-2'>
-									<a title='E-mail' href={`mailto:${patient.email}`} className='transition hover:text-primary'>
-										<FaRegEnvelope />
-									</a>
-									<a
-										title='WhatsApp'
-										href={`https://wa.me/55${patient.phone.replace(/[ ()-]/g, '')}`}
-										className='transition hover:text-primary'
-									>
-										<FaWhatsapp />
-									</a>
-								</div>
+								<ContactLinks email={patient.email} phone={patient.phone} />
 							</BoxContent>
 						)
 					})
