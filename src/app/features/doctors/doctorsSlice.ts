@@ -59,7 +59,7 @@ export const doctorsSlice = createSlice({
 		},
 		setFilteredDoctorsByName: (state, action) => {
 			state.filteredDoctorsByName = state.doctors.filter(doctor => {
-				doctor.personalInfo.fullName.toLowerCase().includes(action.payload.toLowerCase())
+				return doctor.personalInfo.fullName.toLowerCase().includes(action.payload.toLowerCase())
 			})
 		}
 	}

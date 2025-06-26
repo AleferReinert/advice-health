@@ -25,37 +25,43 @@ export default function DoctorsPage() {
 			</div>
 
 			<div className='grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-				{filteredDoctorsByName.map((doctor, index) => {
-					const fullName = doctor.personalInfo.fullName.split(' ')
-					const firstAndLastName = `${fullName[0]} ${fullName[fullName.length - 1]}`
-					const formattedName = `${doctor.personalInfo.gender === 'male' ? 'Dr. ' : 'Dra. '}  ${firstAndLastName}`
+				{filteredDoctorsByName.length > 0 ? (
+					filteredDoctorsByName.map((doctor, index) => {
+						const fullName = doctor.personalInfo.fullName.split(' ')
+						const firstAndLastName = `${fullName[0]} ${fullName[fullName.length - 1]}`
+						const formattedName = `${doctor.personalInfo.gender === 'male' ? 'Dr. ' : 'Dra. '}  ${firstAndLastName}`
 
-					return (
-						<BoxContent key={index}>
-							<Link title='Visualizar detalhes' href={`/profissional/${doctor.id}`} className='p-4 pb-0'>
-								<h2 className='font-semibold'>{formattedName}</h2>
-								<p className='opacity-85 text-xs font-light'>CRM {doctor.professionalInfo.crm}</p>
-								<p className='font-light'>{doctor.professionalInfo.specialties.join(', ')}</p>
-							</Link>
-							<div className='flex gap-4 [&_svg]:size-5 p-4 pt-2'>
-								<a
-									title='E-mail'
-									href={`mailto:${doctor.professionalInfo.email}`}
-									className='transition hover:text-primary'
-								>
-									<FaRegEnvelope />
-								</a>
-								<a
-									title='WhatsApp'
-									href={`https://wa.me/55${doctor.professionalInfo.phone.replace(/[ ()-]/g, '')}`}
-									className='transition hover:text-primary'
-								>
-									<FaWhatsapp />
-								</a>
-							</div>
-						</BoxContent>
-					)
-				})}
+						return (
+							<BoxContent key={index}>
+								<Link title='Visualizar detalhes' href={`/profissional/${doctor.id}`} className='p-4 pb-0'>
+									<h2 className='font-semibold' title={doctor.personalInfo.fullName}>
+										{formattedName}
+									</h2>
+									<p className='opacity-85 text-xs font-light'>CRM {doctor.professionalInfo.crm}</p>
+									<p className='font-light'>{doctor.professionalInfo.specialties.join(', ')}</p>
+								</Link>
+								<div className='flex gap-4 [&_svg]:size-5 p-4 pt-2'>
+									<a
+										title='E-mail'
+										href={`mailto:${doctor.professionalInfo.email}`}
+										className='transition hover:text-primary'
+									>
+										<FaRegEnvelope />
+									</a>
+									<a
+										title='WhatsApp'
+										href={`https://wa.me/55${doctor.professionalInfo.phone.replace(/[ ()-]/g, '')}`}
+										className='transition hover:text-primary'
+									>
+										<FaWhatsapp />
+									</a>
+								</div>
+							</BoxContent>
+						)
+					})
+				) : (
+					<p>Nenhum médico encontrado.</p>
+				)}
 			</div>
 
 			<Modal title='Novo médico' showModal={createPatientModal} setShowModal={setCreatePatientModal}>

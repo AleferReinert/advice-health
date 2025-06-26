@@ -1,16 +1,23 @@
+import { setFilteredDoctorsByName } from '@/app/features/doctors/doctorsSlice'
 import { setFilteredPatientsByNameOrCpf } from '@/app/features/patients/patientsSlice'
 import { useAppDispatch } from '@/app/hooks'
+import { usePathname } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 
 export function Search() {
 	const [searchTerm, setSearchTerm] = useState('')
 	const dispatch = useAppDispatch()
+	const pathname = usePathname()
 
 	const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		setSearchTerm(value)
-		dispatch(setFilteredPatientsByNameOrCpf(value))
+		if (pathname === '/pacientes') {
+			dispatch(setFilteredPatientsByNameOrCpf(value))
+		} else {
+			dispatch(setFilteredDoctorsByName(value))
+		}
 	}
 
 	return (
@@ -24,7 +31,7 @@ export function Search() {
 					onChange={e => handleSearch(e)}
 				/>
 				<button title='Pesquisar' className='transition text-gray-500 group-focus-within:text-text hover:text-primary'>
-					<AiOutlineSearch size={28} />
+					<AiOutlineSearch aria-hidden size={28} />
 				</button>
 			</div>
 		</div>
