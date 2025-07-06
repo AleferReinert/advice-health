@@ -11,8 +11,8 @@ export interface DoctorState {
 		cpf: string
 		gender: 'male' | 'female' | 'other'
 		profilePictureUrl: string
-		phone?: string
-		email?: string
+		phone: string
+		email: string
 	}
 	professionalInfo: {
 		crm: string

@@ -10,14 +10,14 @@ export const mockDoctors: DoctorState[] = [
 			dateOfBirth: '1985-05-15',
 			cpf: '123.456.789-00',
 			gender: 'male',
-			profilePictureUrl: '/doctors/ana-souza-143256.webp',
-			phone: '987654321',
+			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
+			phone: '5547987654321',
 			email: 'joao.silva@example.com'
 		},
 		professionalInfo: {
 			crm: '123456-SP',
 			specialties: ['Cardiologista'],
-			phone: '987654321',
+			phone: '5547983255344',
 			email: 'joao.silva@clinic.com'
 		},
 		address: {
@@ -44,13 +44,13 @@ export const mockDoctors: DoctorState[] = [
 			cpf: '987.654.321-00',
 			gender: 'female',
 			profilePictureUrl: '/doctors/carla-oliveira-789012.webp',
-			phone: '987654322',
+			phone: '5547987654322',
 			email: 'maria.oliveira@example.com'
 		},
 		professionalInfo: {
 			crm: '654321-RJ',
 			specialties: ['Pediatra'],
-			phone: '987654322',
+			phone: '5547911563821',
 			email: 'maria.oliveira@clinic.com'
 		},
 		address: {
@@ -77,13 +77,13 @@ export const mockDoctors: DoctorState[] = [
 			cpf: '111.222.333-44',
 			gender: 'male',
 			profilePictureUrl: '/doctors/joao-lima-657328.webp',
-			phone: '987654323',
+			phone: '5547987654323',
 			email: 'carlos.almeida@example.com'
 		},
 		professionalInfo: {
 			crm: '789456-MG',
 			specialties: ['Ortopedista'],
-			phone: '987654323',
+			phone: '5547997554221',
 			email: 'carlos.almeida@clinic.com'
 		},
 		address: {
@@ -109,14 +109,14 @@ export const mockDoctors: DoctorState[] = [
 			dateOfBirth: '1982-02-10',
 			cpf: '555.666.777-88',
 			gender: 'male',
-			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654324',
+			profilePictureUrl: '/doctors/joao-lima-657328.webp',
+			phone: '5547987654324',
 			email: 'paulo.costa@example.com'
 		},
 		professionalInfo: {
 			crm: '123789-BA',
 			specialties: ['Neurologista'],
-			phone: '987654324',
+			phone: '5547922651125',
 			email: 'paulo.costa@clinic.com'
 		},
 		address: {
@@ -142,14 +142,14 @@ export const mockDoctors: DoctorState[] = [
 			dateOfBirth: '1992-08-25',
 			cpf: '222.333.444-55',
 			gender: 'female',
-			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654325',
+			profilePictureUrl: '/doctors/ana-souza-143256.webp',
+			phone: '5547987654325',
 			email: 'ana.souza@example.com'
 		},
 		professionalInfo: {
 			crm: '987654-ES',
 			specialties: ['Ginecologista'],
-			phone: '987654325',
+			phone: '5547961653321',
 			email: 'ana.souza@clinic.com'
 		},
 		address: {
@@ -176,13 +176,13 @@ export const mockDoctors: DoctorState[] = [
 			cpf: '333.444.555-66',
 			gender: 'male',
 			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654326',
+			phone: '5547987654326',
 			email: 'rafael.martins@example.com'
 		},
 		professionalInfo: {
 			crm: '246801-SP',
 			specialties: ['Dermatologista'],
-			phone: '987654326',
+			phone: '5547942678322',
 			email: 'rafael.martins@clinic.com'
 		},
 		address: {
@@ -208,14 +208,14 @@ export const mockDoctors: DoctorState[] = [
 			dateOfBirth: '1988-06-18',
 			cpf: '444.555.666-77',
 			gender: 'female',
-			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654327',
+			profilePictureUrl: '/doctors/ana-souza-143256.webp',
+			phone: '5547987654327',
 			email: 'clara.lima@example.com'
 		},
 		professionalInfo: {
 			crm: '987654-PR',
 			specialties: ['Oftalmologista'],
-			phone: '987654327',
+			phone: '5547991652338',
 			email: 'clara.lima@clinic.com'
 		},
 		address: {
@@ -241,14 +241,14 @@ export const mockDoctors: DoctorState[] = [
 			dateOfBirth: '1995-12-12',
 			cpf: '555.666.777-88',
 			gender: 'male',
-			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654328',
+			profilePictureUrl: '/doctors/joao-lima-657328.webp',
+			phone: '5547987654328',
 			email: 'joao.pereira@example.com'
 		},
 		professionalInfo: {
 			crm: '789123-DF',
 			specialties: ['Endocrinologista'],
-			phone: '987654328',
+			phone: '5547918766429',
 			email: 'joao.pereira@clinic.com'
 		},
 		address: {
@@ -275,13 +275,13 @@ export const mockDoctors: DoctorState[] = [
 			cpf: '666.777.888-99',
 			gender: 'male',
 			profilePictureUrl: '/doctors/marcos-pereira-351647.webp',
-			phone: '987654329',
+			phone: '5547987654329',
 			email: 'gustavo.rocha@example.com'
 		},
 		professionalInfo: {
 			crm: '123321-SC',
 			specialties: ['Urologista'],
-			phone: '987654329',
+			phone: '5547985652428',
 			email: 'gustavo.rocha@clinic.com'
 		},
 		address: {
@@ -308,13 +308,13 @@ export const mockDoctors: DoctorState[] = [
 			cpf: '777.888.999-00',
 			gender: 'female',
 			profilePictureUrl: '/doctors/ana-souza-143256.webp',
-			phone: '987654330',
+			phone: '5547987654330',
 			email: 'larissa.costa@example.com'
 		},
 		professionalInfo: {
 			crm: '654123-PI',
 			specialties: ['Neurologista', 'Psiquiatra'],
-			phone: '987654330',
+			phone: '5547977655332',
 			email: 'larissa.costa@clinic.com'
 		},
 		address: {

@@ -5,6 +5,7 @@ import { ButtonLink } from '@/components/ButtonLink/ButtonLink'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
 import { useSelector } from 'react-redux'
+import { formatPhoneNumber } from '../../../utils/formatPhoneNumber'
 
 export default function DoctorPage() {
 	const { slug } = useParams()
@@ -20,8 +21,8 @@ export default function DoctorPage() {
 			</>
 		)
 
-	const { profilePictureUrl, fullName } = doctor.personalInfo
-	const { crm, email, phone, specialties } = doctor.professionalInfo
+	const { crm, email: professionalEmail, phone: professionalPhone, specialties } = doctor.professionalInfo
+	const { profilePictureUrl, fullName, cpf, email: personalEmail, phone: personalPhone } = doctor.personalInfo
 	const { city, district, street, number, postalCode, state, complement } = doctor.address
 
 	return (
@@ -34,6 +35,7 @@ export default function DoctorPage() {
 								src={profilePictureUrl}
 								alt={`Foto de ${fullName}`}
 								fill
+								priority
 								className='rounded-full'
 								sizes='(max-width: 320px) 240px, 150px'
 							/>
@@ -41,21 +43,46 @@ export default function DoctorPage() {
 					)}
 					<div className=''>
 						<h1 className='font-semibold text-3xl'>{fullName}</h1>
-						<h2 className='font-light mb-4 text-lg'>{specialties.join(', ')}</h2>
+						<h2 className='font-light text-lg'>{specialties.join(', ')}</h2>
 					</div>
 				</div>
-				<address className='not-italic [&_strong]:font-medium font-light'>
-					<strong>CRM:</strong> {crm}
-					<br />
-					<strong>Telefone: </strong>
-					<a href={`tel:${phone}`}>{phone}</a>
-					<br />
-					<strong>Email: </strong>
-					<a href={`mailto:${email}`}>{email}</a>
-					<br />
-					<strong>Endereço: </strong>
-					{street}, {number} - {complement}, {district}, {city} - {state}, CEP {postalCode}
-				</address>
+				<div className='space-y-4 [&_strong]:font-medium font-light [&_a]:transition [&_a:hover]:text-primary'>
+					<div>
+						<h3 className='font-semibold text-primary'>Dados profissionais</h3>
+						<p>
+							<strong>CRM:</strong> {crm}
+							<br />
+							<strong>Telefone: </strong>
+							<a href={`tel:${professionalPhone}`} title='Ligar'>
+								{formatPhoneNumber(professionalPhone)}
+							</a>
+							<br />
+							<strong>E-mail: </strong>
+							<a href={`mailto:${professionalEmail}`} title='Enviar e-mail'>
+								{professionalEmail}
+							</a>
+						</p>
+					</div>
+					<div>
+						<h3 className='font-semibold text-primary'>Dados pessoais</h3>
+						<p>
+							<strong>CPF:</strong> {cpf}
+							<br />
+							<strong>Telefone: </strong>
+							<a href={`tel:${personalPhone}`} title='Ligar'>
+								{formatPhoneNumber(personalPhone)}
+							</a>
+							<br />
+							<strong>E-mail: </strong>
+							<a href={`mailto:${personalEmail}`} title='Enviar e-mail'>
+								{personalEmail}
+							</a>
+							<br />
+							<strong>Endereço: </strong>
+							{street}, {number} - {complement}, {district}, {city} - {state}, CEP {postalCode}
+						</p>
+					</div>
+				</div>
 			</div>
 			<div className='mt-4 flex justify-end'>
 				<ButtonLink href='/medicos' className='w-full md:w-auto'>
