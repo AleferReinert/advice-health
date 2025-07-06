@@ -4,6 +4,7 @@ import { mockDoctors } from '../../../mock/doctors.mock'
 export interface DoctorState {
 	id: string
 	createdAt: string
+	slug: string
 	personalInfo: {
 		fullName: string
 		dateOfBirth: string

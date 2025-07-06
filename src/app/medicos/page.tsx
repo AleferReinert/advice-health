@@ -33,7 +33,7 @@ export default function DoctorsPage() {
 
 						return (
 							<BoxContent key={index} className='transition hover:scale-105'>
-								<Link title='Visualizar detalhes' href={`/profissional/${doctor.id}`} className='p-4 pb-0'>
+								<Link title='Visualizar detalhes' href={`/medicos/${doctor.slug}`} className='p-4 pb-0'>
 									<h2 className='font-semibold' title={`${prefix}${doctor.personalInfo.fullName}`}>
 										{prefix} {firstAndLastName}
 									</h2>

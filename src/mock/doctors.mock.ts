@@ -4,6 +4,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '1',
 		createdAt: '2023-01-10T08:00:00Z',
+		slug: 'joao-silva',
 		personalInfo: {
 			fullName: 'João Silva',
 			dateOfBirth: '1985-05-15',
@@ -36,6 +37,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '2',
 		createdAt: '2023-02-15T09:30:00Z',
+		slug: 'maria-oliveira',
 		personalInfo: {
 			fullName: 'Maria Oliveira',
 			dateOfBirth: '1990-07-20',
@@ -68,6 +70,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '3',
 		createdAt: '2023-03-25T14:45:00Z',
+		slug: 'carlos-almeida-dos-santos',
 		personalInfo: {
 			fullName: 'Carlos Almeida dos Santos',
 			dateOfBirth: '1978-11-30',
@@ -100,6 +103,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '4',
 		createdAt: '2023-04-10T10:00:00Z',
+		slug: 'paulo-costa-tavarez-de-souza',
 		personalInfo: {
 			fullName: 'Paulo Costa Tavarez de Souza',
 			dateOfBirth: '1982-02-10',
@@ -132,6 +136,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '5',
 		createdAt: '2023-05-05T11:15:00Z',
+		slug: 'ana-souza',
 		personalInfo: {
 			fullName: 'Ana Souza',
 			dateOfBirth: '1992-08-25',
@@ -164,6 +169,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '6',
 		createdAt: '2023-06-20T15:30:00Z',
+		slug: 'rafael-martins',
 		personalInfo: {
 			fullName: 'Rafael Martins',
 			dateOfBirth: '1980-01-05',
@@ -196,6 +202,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '7',
 		createdAt: '2023-07-15T16:45:00Z',
+		slug: 'clara-braganca-lima-oliveira-de-souza',
 		personalInfo: {
 			fullName: 'Clara Bragança Lima Oliveira de Souza',
 			dateOfBirth: '1988-06-18',
@@ -228,6 +235,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '8',
 		createdAt: '2023-08-10T17:00:00Z',
+		slug: 'joao-pereira',
 		personalInfo: {
 			fullName: 'João Pereira',
 			dateOfBirth: '1995-12-12',
@@ -260,6 +268,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '9',
 		createdAt: '2023-09-12T18:30:00Z',
+		slug: 'gustavo-rocha',
 		personalInfo: {
 			fullName: 'Gustavo Rocha',
 			dateOfBirth: '1983-04-10',
@@ -292,6 +301,7 @@ export const mockDoctors: DoctorState[] = [
 	{
 		id: '10',
 		createdAt: '2023-10-25T19:00:00Z',
+		slug: 'larissa-costa',
 		personalInfo: {
 			fullName: 'Larissa Costa',
 			dateOfBirth: '1993-03-05',
