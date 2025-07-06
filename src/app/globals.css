@@ -125,7 +125,7 @@ button.react-calendar__month-view__days__day--weekend {
 }
 
 .react-calendar__tile {
-	@apply p-2 text-center rounded-default transition-all;
+	@apply py-2 text-center rounded-default transition-all;
 }
 
 .react-calendar__month-view__days__day--weekend {

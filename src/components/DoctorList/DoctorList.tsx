@@ -24,7 +24,7 @@ export const DoctorList = ({ doctors }: DoctorsState) => {
 							hover:bg-gray-100 hover:opacity-100
 						`}
 					>
-						<div className='flex gap-4 w-max'>
+						<div className='flex gap-4'>
 							<Image
 								alt={doctor.personalInfo.fullName}
 								src={doctor.personalInfo.profilePictureUrl}
@@ -33,14 +33,14 @@ export const DoctorList = ({ doctors }: DoctorsState) => {
 								className='rounded-full size-12'
 							/>
 							<div>
-								<h3 className={`${active && 'text-primary'} font-medium transition whitespace-nowrap`}>
+								<h3 className={`${active ? 'text-primary' : ''} font-medium transition`}>
 									{doctor.personalInfo.fullName}
 								</h3>
 								<p className='text-sm'>{doctor.professionalInfo.specialties}</p>
 							</div>
 						</div>
 						<AiFillCaretDown
-							className={`${active ? 'text-primary' : 'text-transparent'} size-4 transition md:-rotate-90`}
+							className={`${active ? 'text-primary' : 'text-transparent'} size-4 transition lg:-rotate-90`}
 						/>
 					</li>
 				)

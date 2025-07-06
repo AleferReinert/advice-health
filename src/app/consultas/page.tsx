@@ -29,7 +29,7 @@ export default function AppointmentsPage() {
 	return (
 		<>
 			<div className='flex flex-col gap-4'>
-				<div className='grid gap-4 md:grid-cols-[min-content_1fr] xl:grid-cols-2'>
+				<div className='grid gap-4 lg:grid-cols-2'>
 					<BoxContent>
 						<Heading theme='box'>Médicos</Heading>
 						<DoctorList doctors={doctors} filteredDoctorsByName={[]} />

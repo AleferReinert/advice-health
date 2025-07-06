@@ -1,6 +1,7 @@
 import { AppointmentState } from '@/app/features/appointments/appointmentsSlice'
 import { setSelectedDate } from '@/app/features/schedule/scheduleSlice'
 import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import { useEffect, useState } from 'react'
 import ReactCalendar from 'react-calendar'
 import { AiOutlineDoubleLeft, AiOutlineDoubleRight, AiOutlineLeft, AiOutlineRight } from 'react-icons/ai'
 import { formatDate } from '../../utils/formatDate'
@@ -15,13 +16,16 @@ interface CalendarProps {
 export function Calendar({ appointments, selectedDate, showTasks = false }: CalendarProps) {
 	const { tasks } = useAppSelector(state => state.tasks)
 	const dispatch = useAppDispatch()
-	const minDate =
-		new Date(Math.min(...appointments.map(appointments => new Date(appointments.date).getTime()))) || undefined
-	const maxDate =
-		new Date(Math.max(...appointments.map(appointments => new Date(appointments.date).getTime()))) || undefined
+	const [minDate, setMinDate] = useState<Date | undefined>(undefined)
+	const [maxDate, setMaxDate] = useState<Date | undefined>(undefined)
+
+	useEffect(() => {
+		setMinDate(new Date(Math.min(...appointments.map(appointments => new Date(appointments.date).getTime()))))
+		setMaxDate(new Date(Math.max(...appointments.map(appointments => new Date(appointments.date).getTime()))))
+	}, [appointments])
 
 	return (
-		<BoxContent className='max-h-fit!'>
+		<BoxContent className='!max-h-fit !min-h-fit px-2'>
 			<ReactCalendar
 				onChange={value => {
 					if (value instanceof Date) {
