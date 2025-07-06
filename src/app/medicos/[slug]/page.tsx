@@ -1,5 +1,4 @@
 'use client'
-
 import { RootState } from '@/app/store'
 import { ButtonLink } from '@/components/ButtonLink/ButtonLink'
 import Image from 'next/image'

@@ -32,7 +32,7 @@ export default function PatientsPage() {
 
 						return (
 							<BoxContent key={index} className='transition hover:scale-105'>
-								<Link title='Visualizar detalhes' href={`/paciente/${patient.id}`} className='p-4 pb-0'>
+								<Link title='Visualizar detalhes' href={`/pacientes/${patient.slug}`} className='p-4 pb-0'>
 									<h2 className='font-semibold' title={patient.fullName}>
 										{firstAndLastName}
 									</h2>

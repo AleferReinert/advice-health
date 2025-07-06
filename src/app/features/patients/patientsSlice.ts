@@ -4,6 +4,7 @@ import { mockPatients } from '../../../mock/patients.mock'
 export interface PatientState {
 	id: string
 	fullName: string
+	slug: string
 	dateOfBirth: string
 	cpf: string
 	phone: string
